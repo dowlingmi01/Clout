@@ -1,5 +1,7 @@
 class SurveysController < ApplicationController
   before_action :set_survey, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authorize_owner!, only: [:edit, :update, :destroy]
 
   # GET /surveys or /surveys.json
   def index
@@ -22,6 +24,7 @@ class SurveysController < ApplicationController
   # POST /surveys or /surveys.json
   def create
     @survey = Survey.new(survey_params)
+    @survey.organizer = current_user
 
     respond_to do |format|
       if @survey.save
@@ -66,5 +69,14 @@ class SurveysController < ApplicationController
     # Only allow a list of trusted parameters through.
     def survey_params
       params.require(:survey).permit(:survey_name, :description, :location)
+    end
+
+    def authorize_owner!
+      authenticate_user!
+      unless @survey.organizer == current_user
+        flash[:alert] = "You do not permission to '#{action_name}' the '#{@survey.survey_name.upcase}'"
+        redirect_to surveys_path
+      end
+      
     end
 end

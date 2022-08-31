@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg navbar-fixed-top" style="background-color: white">
+  <div class="container-fluid">
+    <a class="navbar-brand"></a>
+    <div class="navbar-header">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="bs-example-navbar-collapse-1" aria-expanded="false">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+  </div>
+
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+  <ul class="nav navbar-nav">
+    <li class="<%= "active" if current_page?("/")%>"><%= link_to "Home", root_path %></li>
+    <li class= "<%= "active" if current_page?("/surveys")%>"><%= link_to "Surveys", surveys_path %></li> 
+    <% unless user_signed_in? %>    
+      <li class= "<%= "active" if current_page?("/sign_up")%>"><%= link_to "Sign up", new_user_registration_path %></li>
+      <li class= "<%= "active" if current_page?("/users/sign_in")%>"><%= link_to "Sign in", new_user_session_path %></li>
+    <% end %>
+  </ul>
+      <%= form_tag surveys_path, class: "navbar-form navbar-left", method: :get do  %>
+      <div class="form group">
+          <%= text_field_tag :query, params[:query], placeholder: "Search surveys here", class: "form-control" %>
+          <%= submit_tag "Submit", class: "btn btn-default" %>
+          <% if params[:query].present?%>
+            <%= link_to "Clear", surveys_path %>
+          <% end %>
+      </div>
+    <% end %>
+
+  <ul class="nav navbar-nav navbar-right">
+    <% if user_signed_in? %>
+      <li class= "<%= "active" if current_page?("/users/edit")%>"><%= link_to current_user.email, edit_user_registration_path %>
+      </li>
+       <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+    <% end %>
+  </ul>
+</div>
+</div>
+</nav>
