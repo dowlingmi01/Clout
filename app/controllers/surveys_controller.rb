@@ -1,29 +1,30 @@
 class SurveysController < ApplicationController
   before_action :set_survey, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :authorize_owner!, only: [:edit, :update, :destroy]
 
-  # GET /surveys or /surveys.json
   def index
     @surveys = Survey.all
+    authorize @surveys, :index?
   end
 
-  # GET /surveys/1 or /surveys/1.json
   def show
+    authorize @survey, :show?
   end
 
-  # GET /surveys/new
   def new
     @survey = Survey.new
+
+    authorize @survey, :new?
   end
 
-  # GET /surveys/1/edit
   def edit
+    authorize @survey, :edit?
   end
 
-  # POST /surveys or /surveys.json
   def create
     @survey = Survey.new(survey_params)
+
+    authorize @survey, :create?
     @survey.organizer = current_user
 
     respond_to do |format|
@@ -37,8 +38,9 @@ class SurveysController < ApplicationController
     end
   end
 
-  # PATCH/PUT /surveys/1 or /surveys/1.json
   def update
+    authorize @survey, :update?
+
     respond_to do |format|
       if @survey.update(survey_params)
         format.html { redirect_to survey_url(@survey), notice: "Survey was successfully updated." }
@@ -50,8 +52,8 @@ class SurveysController < ApplicationController
     end
   end
 
-  # DELETE /surveys/1 or /surveys/1.json
   def destroy
+    authorize @survey, :destroy?
     @survey.destroy
 
     respond_to do |format|
@@ -61,22 +63,16 @@ class SurveysController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_survey
       @survey = Survey.find(params[:id])
+
+      rescue ActiveRecord::RecordNotFound
+      flash.alert = "The page you requested does not exist"
+      redirect_to surveys_path
+
     end
 
-    # Only allow a list of trusted parameters through.
     def survey_params
       params.require(:survey).permit(:survey_name, :description, :location)
-    end
-
-    def authorize_owner!
-      authenticate_user!
-      unless @survey.organizer == current_user
-        flash[:alert] = "You do not permission to '#{action_name}' the '#{@survey.survey_name.upcase}'"
-        redirect_to surveys_path
-      end
-      
     end
 end
