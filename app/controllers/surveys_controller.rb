@@ -3,7 +3,7 @@ class SurveysController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @surveys = Survey.all
+    @surveys = Survey.order(created_at: :desc)
     authorize @surveys, :index?
     @page_title = "Surveys"
   end
@@ -77,6 +77,9 @@ class SurveysController < ApplicationController
     def survey_params
       params.require(:survey).permit(:survey_name, 
                                     :description, 
-                                    :location)
+                                    :location,
+                                    :start_date,
+                                    :end_date,
+                                    )
     end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_31_160138) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_01_185127) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,6 +21,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_31_160138) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.integer "cpi"
+    t.integer "incidence"
+    t.integer "loi"
     t.index ["user_id"], name: "index_surveys_on_user_id"
   end
 

@@ -1,4 +1,13 @@
 <div id="<%= dom_id survey %>">
+
+    <div>
+      <h3>Survey Details</h3>
+      <p><span class="survey-details"><strong>Survey Description:</strong> <%= survey.description %> </span></p>
+      <p><span class="survey-details"><strong>Cost Per Interview:</strong> <%= number_to_currency(survey.cpi) %></span></p>
+      <p><span class="survey-details"><strong>Survey Incidence Rate:</strong> <%= survey.incidence %></span></p>
+      <p><span class="survey-details"><strong>Length of Interview:</strong> <%= survey.loi %></span></p>
+     </div>
+
   <p>
     <strong>Survey name:</strong>
     <%= survey.survey_name %>

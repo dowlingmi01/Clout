@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1 shrink-to-fit=no">
     <title><%= @page_title %></title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -11,15 +12,19 @@
   </head>
 
   <body>
-     <%= render "layouts/header" %>
-    <div class="container">
-      <% flash.each do |type, message| %>
-        <div class="alert alert-=<%= type %>">
-          <%= message %>
-      <% end %>
-    <%= yield %>
+    <div class="site-wrapper">
+      <div class="site-wrapper-inner">
+        <div class="cover-container">
+          <%= render "layouts/header" %>
+            <% flash.each do |type, message| %>
+            <div class="alert alert-=<%= type %>">
+            <%= message %>
+          <% end %>
+          <%= yield %>
 
-    <%= source_helper %>
-</div>
+        </div>
+      </div>
+    </div>
+  </div>
   </body>
 </html>
