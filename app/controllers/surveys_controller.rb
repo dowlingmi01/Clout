@@ -5,10 +5,12 @@ class SurveysController < ApplicationController
   def index
     @surveys = Survey.all
     authorize @surveys, :index?
+    @page_title = "Surveys"
   end
 
   def show
     authorize @survey, :show?
+    @page_title = @survey.survey_name
   end
 
   def new

@@ -14,4 +14,9 @@
     <%= survey.location %>
   </p>
 
+  <p>
+    <strong>Date:</strong>
+    <%= distance_of_time_in_words(survey.created_at, Time.now) %> ago
+  </p>
+
 </div>

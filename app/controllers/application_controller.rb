@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 	include DeviseWhitelist
 	include SetSource
 	include CurrentUserConcern
+	include DefaultPageContent
 
 	after_action :verify_authorized, unless: :devise_controller?
 	rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
