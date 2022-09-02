@@ -1,0 +1,50 @@
+<%= provide(:title, @category.name) %>
+
+<header>
+	<h1 class="text-uppercase"><%= @category.name %> <small>Surveys</small></h1>
+
+	<ul class="actions">
+		<% admins_only do  %>
+			<li><%= link_to "Edit Category", edit_admin_category_path(@category), class: "edit" %></li>
+
+			<li><%= link_to "Delete Category", admin_category_path(@category), method: :delete, data: {confirm: "Are you sure you want to delete this category"}, class: "delete" %></li>
+		<% end %>
+	</ul>
+</header>
+
+<div class="row">
+	<div class="col-sm-3 pull-right">
+		<div class="sidebar">
+			<h3 class="discover">Discover</h3>
+			<ul class="nav nav-pills nav-stacked">
+				<li class="<%= "active" if current_page?("/surveys")%>"><%= link_to "All Surveys", surveys_path %></li>
+				<% @categories.each do |category| %>
+					<li class="<%= "active" if current_page?("/categories/#{category.id}") %>">
+						<%= link_to category.name, category_path(category) %>
+					</li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="search">
+	<div class="col-sm-9">
+		<h4>Discover your surveys</h4>
+		<%= form_tag surveys_path, class: "form-horizontal", method: :get do  %>
+			<div class="form group form-group lg">
+				<div class="col-sm-10">
+					<%= text_field_tag :query, params[:query], placeholder: "Search surveys here", autofocus: :true, class: "form-control" %>
+				</div>
+				<div class="class="col-sm-2>
+					<%= submit_tag "Find", class: "btn btn-default btn-lg" %>
+					<% if params[:query].present? %>
+						<%= link_to "Clear", surveys_path %>
+					<% end %>
+				</div>
+			</div>
+		<% end %>
+	</div>
+</div>
+
+
+

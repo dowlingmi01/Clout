@@ -11,20 +11,18 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <div class="site-wrapper">
-      <div class="site-wrapper-inner">
-        <div class="cover-container">
-          <%= render "layouts/header" %>
-            <% flash.each do |type, message| %>
-            <div class="alert alert-=<%= type %>">
-            <%= message %>
-          <% end %>
+  <body class="text-center">
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+      <header class="masthead mb-auto">
+        <div class="inner">
+
+          <%= render "shared/application_nav" %>
+
           <%= yield %>
+
           <%= @copyright %>
         </div>
-      </div>
+      </header>
     </div>
-  </div>
   </body>
 </html>

@@ -4,6 +4,7 @@ class SurveysController < ApplicationController
 
   def index
     @surveys = Survey.order(created_at: :desc)
+    @categories = Category.order(:name)
     authorize @surveys, :index?
     @page_title = "Surveys"
   end
