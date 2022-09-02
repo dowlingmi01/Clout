@@ -80,6 +80,8 @@ class SurveysController < ApplicationController
                                     :location,
                                     :start_date,
                                     :end_date,
+                                    :cpi,
+                                    :loi
                                     )
     end
 end

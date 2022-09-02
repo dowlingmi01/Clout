@@ -22,7 +22,7 @@ class SurveyPolicy < ApplicationPolicy
   end
 
   def update?
-    user.present? && user == survey.organizer
+    (user.present? && user == survey.organizer) || user.try(:admin?)
   end
 
   def edit?
@@ -30,7 +30,7 @@ class SurveyPolicy < ApplicationPolicy
   end
 
   def destroy?
-     user.present? && user == survey.organizer   
+     (user.present? && user == survey.organizer) || user.try(:admin?)   
   end
 
   private
