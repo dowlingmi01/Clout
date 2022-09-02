@@ -3,7 +3,9 @@ class Admin::ApplicationController < ApplicationController
   skip_after_action :verify_authorized
 
   def index
+    @users = User.all
     @surveys = Survey.all
+    @categories = Category.all
   end
 
   private
