@@ -1,15 +1,15 @@
-    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
-      <header class="masthead mb-auto">
-        <div class="inner">
-          <h3 class="masthead-brand">CloutCloud</h3>
-          <nav class="nav nav-masthead justify-content-center">
-              <%= link_to "Home", root_path, class: "nav-link" %>
-              <%= link_to "Surveys", surveys_path, class: "nav-link" %>
-              <% admins_only do %>
-                   <%= link_to "Admin", admin_root_path, class: "nav-link" %>
-              <% end %>
-              <%= login_helper "nav-link" %>
-          </nav>
-        </div>
-      </header>
+<div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+  <header class="masthead mb-auto">
+    <div class="inner">
+      <h3 class="masthead-brand">CloutCloud</h3>
+      <nav class="nav nav-masthead justify-content-center">
+          <%= link_to "Home", root_path, class: "nav-link" %>
+          <%= link_to "Surveys", surveys_path, class: "nav-link" %>
+          <% admins_only do %>
+               <%= link_to "Admin", admin_root_path, class: "nav-link" %>
+          <% end %>
+          <%= login_helper "nav-link" %>
+      </nav>
     </div>
+  </header>
+</div>
