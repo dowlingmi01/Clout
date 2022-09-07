@@ -2,12 +2,11 @@
 
 <h1>Categories</h1>
 <div>
-          <% @categories.each do |category| %>
-          <li class="<%= "active" if current_page?("/categories/#{category.id}") %>">
-            <%= link_to category.name, category_path(category) %>
-          </li>
-        <% end %>
-
+    <% @categories.each do |category| %>
+    <li class="<%= "active" if current_page?("/categories/#{category.id}") %>">
+      <%= link_to category.name, category_path(category) %>
+    </li>
+   <% end %>
 </div>
 
 <h1>Surveys</h1>
@@ -15,9 +14,6 @@
 <div id="surveys">
   <% @surveys.each do |survey| %>
     <%= render survey %>
-    <p>
-      <%= link_to "Show this survey", survey %>
-    </p>
   <% end %>
 </div>
 
