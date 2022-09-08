@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   namespace :admin do
     root 'application#index'
-    resources :users, only: [:index]
+    resources :users, only: [:index, :show]
     resources :categories, only: [:index, :new, :create, :edit, :update, :destroy]
   end
 
@@ -11,5 +11,7 @@ Rails.application.routes.draw do
   resources :categories, only: [:show]
   root "home#index"
 
-  resources :surveys
+  resources :surveys do
+    resources :completions, only: [:create]
+  end
 end

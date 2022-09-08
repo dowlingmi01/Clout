@@ -1,4 +1,4 @@
-class SurveysController < ApplicationController
+  class SurveysController < ApplicationController
   before_action :set_survey, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, except: [:index, :show]
 

@@ -5,6 +5,7 @@
 <div>
   <%= link_to "Edit this survey", edit_survey_path(@survey) %> |
   <%= link_to "Back to surveys", surveys_path %>
+  <%= link_to "Complete survey", survey_completions_path(@survey), method: :post, class: "new" %>
 
   <%= button_to "Destroy this survey", @survey, method: :delete %>
 </div>

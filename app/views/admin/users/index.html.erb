@@ -17,7 +17,7 @@
 	<tbody>
 		<% @users.each do |user| %>
 		<tr>
-			<td><%= user.id %>
+			<td><%= link_to user.id, admin_user_path(user) %></td>
 			<td><%= "Avatar" %></td>
 			<td><%= user.username %></td>
 			<td><%= user.email %></td>

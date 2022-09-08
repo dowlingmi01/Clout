@@ -6,6 +6,7 @@ class Admin::ApplicationController < ApplicationController
     @users = User.all
     @surveys = Survey.all
     @categories = Category.all
+    @completions = Completion.all
   end
 
   private

@@ -1,5 +1,5 @@
 <div class="row">
-	<div class="col-sm-3 admin">
+	<div class="col-sm-6 admin">
 		<div class="admin-sidebar">
 			<div class="user-panel">
 				<div class="pull-left image">
@@ -14,43 +14,43 @@
 			<li class="text-uppercase text-center header">Main Navigation</li>
 			<li>
 				<%= link_to admin_users_path do %>
-				<%= fa_icon "users" %>
-					<span>Users</span>
+				<span class="label label info pull-left"><%= fa_icon "users" %></span>
+					<span  class="label label-info pull-left"> Users</span>
 					<span class="label label-primary pull-right"><%= @users.count %></span>
 				<% end %>
 			</li>
 			<li>
 				<%= link_to admin_categories_path do %>
-				<%= fa_icon "th" %>
-					<span>Categories</span>
+				<span class="label label info pull-left"><%= fa_icon "th" %></span>
+					<span  class="label label-info pull-left"> Categories</span>
 					<span class="label label-info pull-right"><%= @categories.count %></span>
 				<% end %>
 			</li>
 			<li>
 				<%= link_to "#" do %>
-				<%= fa_icon "respondent" %>
-					<span>Respondents</span>
+				<span class="label label info pull-left"><%= fa_icon "respondent" %></span>
+					<span  class="label label-info pull-left"> Respondents</span>
 					<span class="label label-danger pull-right">respondents</span>
 				<% end %>
 			</li>
 			<li>
 				<%= link_to surveys_path do %>
-				<%= fa_icon "calendar" %>
-					<span>Surveys</span>
+				<span class="label label info pull-left"><%= fa_icon "calendar" %></span>
+					<span  class="label label-info pull-left"> Surveys</span>
 					<span class="label label-warning pull-right"><%= @surveys.count %></span>
 				<% end %>
 			</li>
 			<li>
 				<%= link_to "#" do %>
-				<%= fa_icon "tags" %>
-					<span>Tags</span>
+				<span class="label label info pull-left"><%= fa_icon "tags" %></span>
+					<span  class="label label-info pull-left"> Tags</span>
 					<span class="label label-default pull-right">tags</span>
 				<% end %>
 			</li>
 		</ul>
 	</div>
 
-	<div class="col-sm-9">
+	<div class="col-sm-6">
 		<header>
 			<h1>Dashboard <small>Control Panel</small></h1>
 		</header>
