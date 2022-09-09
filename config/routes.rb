@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :enrollments
   namespace :admin do
     root 'application#index'
     resources :users, only: [:index, :show]
@@ -13,5 +14,6 @@ Rails.application.routes.draw do
 
   resources :surveys do
     resources :completions, only: [:create]
+    resources :enrollments, only: [:new, :create]
   end
 end

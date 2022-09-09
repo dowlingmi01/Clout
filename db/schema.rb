@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_07_200331) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_08_172925) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -26,8 +26,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_07_200331) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 0
     t.index ["survey_id"], name: "index_completions_on_survey_id"
     t.index ["user_id"], name: "index_completions_on_user_id"
+  end
+
+  create_table "enrollments", force: :cascade do |t|
+    t.bigint "survey_id", null: false
+    t.bigint "user_id", null: false
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["survey_id"], name: "index_enrollments_on_survey_id"
+    t.index ["user_id"], name: "index_enrollments_on_user_id"
   end
 
   create_table "surveys", force: :cascade do |t|
@@ -63,5 +74,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_07_200331) do
 
   add_foreign_key "completions", "surveys"
   add_foreign_key "completions", "users"
+  add_foreign_key "enrollments", "surveys"
+  add_foreign_key "enrollments", "users"
   add_foreign_key "surveys", "users"
 end

@@ -5,6 +5,7 @@
   def index
     @surveys = Survey.order(created_at: :desc)
     @categories = Category.order(:name)
+    @enrollments = Enrollment.all
     authorize @surveys, :index?
     @page_title = "Surveys"
   end
@@ -82,7 +83,8 @@
                                     :start_date,
                                     :end_date,
                                     :cpi,
-                                    :loi
+                                    :loi,
+                                    :survey_id
                                     )
     end
 end
