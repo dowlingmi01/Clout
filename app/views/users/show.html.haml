@@ -1,0 +1,26 @@
+%body
+  %header
+    %h1= @user.first_name
+  - if @user.organized_surveys.any?
+    %table.table.table-striped
+      %thead
+        %tr
+          %th Survey
+          %th Start Date
+          %th End Date
+          %th Status
+          %th{:colspan => "3"}
+      %tbody
+        - @user.organized_surveys.reverse.each do |survey|
+          %tr
+            %td= link_to survey.survey_name, survey_path(survey)
+            %td= time_format(survey.start_date)
+            %td= time_format(survey.end_date)
+            %td= survey_status(survey)
+            %td
+              = link_to "Edit", edit_survey_path(survey), class: "edit" if policy(survey).edit?
+              = link_to "Delete", survey_path(survey), method: :delete, data: {confirm: "Are you sure?"}, class: "delete" if policy(survey).destroy?
+  - else
+    %p
+      = @user.first_name
+      has no surveys yet

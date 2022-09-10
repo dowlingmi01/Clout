@@ -1,0 +1,7 @@
+%body
+  %header
+    %h1
+      Edit Category
+      %small
+        (#{@category.name})
+    = render "form", category: @category

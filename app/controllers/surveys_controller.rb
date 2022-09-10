@@ -84,7 +84,8 @@
                                     :end_date,
                                     :cpi,
                                     :loi,
-                                    :survey_id
+                                    :survey_id,
+                                    :category_id
                                     )
     end
 end

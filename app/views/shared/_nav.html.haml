@@ -1,0 +1,6 @@
+%div{:class => location}
+  = link_to "Home", root_path
+  = link_to "Surveys", surveys_path
+  - admins_only do
+    = link_to "Admin", admin_root_path
+  = current_user.class

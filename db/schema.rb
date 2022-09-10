@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_08_172925) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_09_180619) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -53,6 +53,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_08_172925) do
     t.integer "cpi"
     t.integer "incidence"
     t.integer "loi"
+    t.integer "category_id"
+    t.index ["category_id"], name: "index_surveys_on_category_id"
     t.index ["user_id"], name: "index_surveys_on_user_id"
   end
 

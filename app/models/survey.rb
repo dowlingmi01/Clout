@@ -1,5 +1,6 @@
 class Survey < ApplicationRecord
 	belongs_to :organizer, class_name: "User", foreign_key: "user_id"
+	belongs_to :category
 	has_many :completions, dependent: :destroy
 	has_many :completers, through: :completions
 	has_many :enrollments
