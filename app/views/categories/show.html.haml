@@ -1,0 +1,44 @@
+%body
+  = provide(:title, @category.name)
+  %header
+    %h1.text-uppercase
+      = @category.name
+      %small Surveys
+    %ul.actions
+      - admins_only do
+        %li= link_to "Edit Category", edit_admin_category_path(@category), class: "edit"
+        %li= link_to "Delete Category", admin_category_path(@category), method: :delete, data: {confirm: "Are you sure you want to delete this category"}, class: "delete"
+  .row
+    .col-sm-6
+      %h4 Discover your surveys
+      = form_tag surveys_path, class: "form-horizontal", method: :get do
+        .form.group.form-group.lg
+          .col-sm-10
+            = text_field_tag :query, params[:query], placeholder: "Search surveys here", autofocus: :true, class: "form-control"
+          %div{:class => "class=", "col-sm-2" => ""}
+            = submit_tag "Find", class: "btn btn-default btn-lg"
+            - if params[:query].present?
+              = link_to "Clear", surveys_path
+    .col-sm-6
+      .sidebar
+        %h3.discover Discover
+        %ul.nav.nav-pills.nav-stacked
+          %li{:class => "#{"active" if current_page?("/surveys")}"}= link_to "All Surveys", surveys_path
+          - @categories.each do |category|
+            %li=link_to category.name, category_path(category)
+    - @category_surveys.each do |survey|
+      .col-sm-9.pull-left
+        = link_to survey_path(survey) do
+          .row
+            .col-sm-3
+              = image_tag "https://picsum.photos/200/100", class: "survey-image"
+            .col-sm-9
+              %h3= survey.survey_name
+              %p
+                %span.survey-location
+                  = survey.location
+                  %strong= survey.location
+              %p.lead-time
+                %span.survey-start= time_format(survey.start_date)
+                %span.pull-right
+                  Organized by: #{survey.organizer}

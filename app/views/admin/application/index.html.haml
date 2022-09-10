@@ -1,0 +1,42 @@
+%body
+  .row
+    .col-sm-6.admin
+      .admin-sidebar
+        .user-panel
+          .pull-left.image
+            %span image
+          .pull-left.info
+            %p= current_user.full_name
+      %ul.admin-menu
+        %li.text-uppercase.text-center.header Main Navigation
+        %li
+          = link_to admin_users_path do
+            %span.label.label.info.pull-left= fa_icon "users"
+            %span.label.label-info.pull-left Users
+            %span.label.label-primary.pull-right= @users.count
+        %li
+          = link_to admin_categories_path do
+            %span.label.label.info.pull-left= fa_icon "th"
+            %span.label.label-info.pull-left Categories
+            %span.label.label-info.pull-right= @categories.count
+        %li
+          = link_to "#" do
+            %span.label.label.info.pull-left= fa_icon "respondent"
+            %span.label.label-info.pull-left Respondents
+            %span.label.label-danger.pull-right respondents
+        %li
+          = link_to surveys_path do
+            %span.label.label.info.pull-left= fa_icon "calendar"
+            %span.label.label-info.pull-left Surveys
+            %span.label.label-warning.pull-right= @surveys.count
+        %li
+          = link_to "#" do
+            %span.label.label.info.pull-left= fa_icon "tags"
+            %span.label.label-info.pull-left Tags
+            %span.label.label-default.pull-right tags
+    .col-sm-6
+      %header
+        %h1
+          Dashboard
+          %small Control Panel
+      %h4 Welcome to Admin Dashboard

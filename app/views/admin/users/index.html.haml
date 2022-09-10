@@ -1,0 +1,22 @@
+%body
+  %header
+    %h1 Users
+  %table.table.table-striped.table-responsive
+    %thead
+      %tr
+        %th User Id
+        %th Avatar
+        %th Username
+        %th Email
+        %th Joined
+        %th Surveys
+    %tbody
+      - @users.each do |user|
+        %tr
+          %td= link_to user.id, admin_user_path(user)
+          %td= "Avatar"
+          %td= user.username
+          %td= user.email
+          %td= time_format(user.created_at)
+          %td= link_to user.organized_surveys.count, user_path(user)
+  %p= link_to "Back to Dashboard", admin_root_path

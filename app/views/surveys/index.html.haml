@@ -1,0 +1,11 @@
+%p{:style => "color: green"}= notice
+%h1 Categories
+%div
+  - @categories.each do |category|
+    %li{:class => "#{"active" if current_page?("/categories/#{category.id}")}"}
+      = link_to category.name, category_path(category)
+%h1 Surveys
+#surveys
+  - @surveys.each do |survey|
+    = render survey
+= link_to "New survey", new_survey_path

@@ -1,0 +1,26 @@
+%header.p-3.mb-3.border-bottom
+  .container
+    .d-flex.flex-wrap.align-items-center.justify-content-center.justify-content-lg-start
+      .navbar-brand= image_tag("logos/ccname.png", width: "150px")
+      %a.d-flex.align-items-center.mb-2.mb-lg-0.text-dark.text-decoration-none{:href => "/"}
+        %svg.bi.me-2{"aria-label" => "Bootstrap", :height => "32", :role => "img", :width => "40"}
+          %use{"xlink:href" => "#bootstrap"}
+      %ul.nav.col-12.col-lg-auto.me-lg-auto.mb-2.justify-content-center.mb-md-0
+        %li= link_to "Home", root_path, class: "nav-link px-2 link-secondary"
+        %li= link_to "Surveys", surveys_path, class: "nav-link px-2 link-dark"
+        - admins_only do
+          %li= link_to "Admin", admin_root_path, class: "nav-link px-2 link-dark"
+        - if current_user.is_a?(GuestUser)
+          %li
+            = link_to "Sign up", new_user_registration_path, class: "nav-link px-2 link-dark"
+          %li
+            = link_to "Sign in", new_user_session_path, class: "nav-link px-2 link-dark"
+      %form.col-12.col-lg-auto.mb-3.mb-lg-0.me-lg-3{:role => "search"}
+        %input.form-control{"aria-label" => "Search", :placeholder => "Search...", :type => "search"}/
+      %ul.nav.navbar-nav.navbar-right
+        - if user_signed_in?
+          %li{:class => "#{"active" if current_page?("/users/edit")}"}
+            = link_to edit_user_registration_path do
+              %span image
+              = current_user.username
+          %li= link_to "Sign out", destroy_user_session_path, method: :delete

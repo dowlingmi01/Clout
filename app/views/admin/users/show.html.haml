@@ -1,0 +1,14 @@
+%h1 Users page
+%table.table.table-striped.table-responsive
+	%thead
+		%tr
+			%th Email
+			%th Username
+			%th Surveys
+			%th Enrollments
+	%tbody
+		%tr
+			%th= @user.email
+			%th= @user.username
+			%th= @user.organized_surveys.count
+			%th= @user.enrollments.count
