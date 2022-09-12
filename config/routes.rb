@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :enrollments
   namespace :admin do
     root 'application#index'
     resources :users, only: [:index, :show]
@@ -10,6 +9,8 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show]
   resources :categories, only: [:show]
+  resources :profiles
+  resources :enrollments
   root "home#index"
 
   resources :surveys do
