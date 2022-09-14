@@ -8,13 +8,13 @@ class CompletionsController < ApplicationController
 
 		if @completion.save
 			flash[:notice] = "You have completed the survey"
-			redirect_to user_path(current_user)
+			redirect_to surveys_path(current_user)
 		end
 	end
 
 	private
 
 	def set_survey
-		@survey = Survey.find_by(params[:survey_id])
+		@survey = Survey.find(params[:survey_id])
 	end
 end
