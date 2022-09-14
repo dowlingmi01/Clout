@@ -6,22 +6,13 @@
         - @profile.errors.full_messages.each do |message|
           %li= message
 
-  = @current_user.inspect
+  = @user.first_name
+  = @user.last_name
 
-  .field
-    = f.label :user
-    = f.text_field :user
-  .field
-    = f.label :age
-    = f.number_field :age
-  .field
-    = f.label :gender
-    = f.text_field :gender
-  .field
-    = f.label :ethnicity
-    = f.text_field :ethnicity
-  .field
-    = f.label :country
-    = f.text_field :country
-  .actions
-    = f.submit 'Save'
+  .form-inputs
+    = f.input :age, collection: 0..99, prompt: "Select your age"
+    = f.input :gender, collection: Profile.select_options_for_gender, prompt: "Select your gender"
+    = f.input :ethnicity, collection: Profile.select_options_for_ethnicity, prompt: "Select your ethnicity"
+    = f.country_select :country
+  .form-actions
+    = f.button :submit

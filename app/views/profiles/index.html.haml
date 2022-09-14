@@ -15,15 +15,15 @@
   %tbody
     - @profiles.each do |profile|
       %tr
-        %td= profile.user
+        %td= profile.user.first_name
         %td= profile.age
-        %td= profile.gender
-        %td= profile.ethnicity
+        %td= profile.gender.titleize
+        %td= profile.ethnicity.titleize
         %td= profile.country
         %td= link_to 'Show', profile
-        %td= link_to 'Edit', edit_profile_path(profile)
-        %td= link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to 'Edit', edit_profile_path(profile) if profile.user == current_user
+        %td= button_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' } if @user_admin
 
 %br
 
-= link_to 'New Profile', new_profile_path
+= link_to 'New Profile', new_profile_path unless @user_has_profile

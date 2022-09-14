@@ -18,6 +18,7 @@ gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.8'
 gem 'jquery-rails'
 gem 'simple_form', '~> 5.1'
 gem "haml-rails", "~> 2.0"
+gem 'country_select', '~> 8.0'
 
 
 # Use Redis adapter to run Action Cable in production

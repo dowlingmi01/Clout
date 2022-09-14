@@ -3,11 +3,14 @@ class ProfilesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user
   skip_after_action :verify_authorized
+  before_action :find_current_user_profile, only: [:edit, :update, :destroy]
 
 
   def index
     @profiles = Profile.all
     @users = User.all
+    @user_has_profile = current_user.profile
+    @user_admin = current_user.admin
   end
 
   def show
@@ -21,8 +24,7 @@ class ProfilesController < ApplicationController
   end
 
   def create
-    @profile = Profile.new(profile_params)
-
+    @profile = @user.build_profile(profile_params)
     respond_to do |format|
       if @profile.save
         format.html { redirect_to profile_url(@profile), notice: "Profile was successfully created." }
@@ -59,9 +61,16 @@ class ProfilesController < ApplicationController
     def profile_params
       params.require(:profile).permit(:user_id, :age, :gender, :ethnicity, :country)
     end
+    
+    def find_current_user_profile
+      @profile = current_user.profile
+      unless @profile 
+        return redirect_to profiles_path, alert: "You shall not pass"
+      end
+    end
 
     def set_user
-      @user = User.find_by(params[:user_id])
+      @user = current_user
     end
 
 end
