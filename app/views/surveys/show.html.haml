@@ -1,11 +1,11 @@
 %p{:style => "color: green"}= notice
 = render @survey
-%div
+%div 
   = link_to "Edit this survey", edit_survey_path(@survey)
   |
   = link_to "Back to surveys", surveys_path
   |
   = link_to "Enroll Survey", new_survey_enrollment_path(@survey), method: :post, class: "new"
   |
-  = link_to "Complete Survey", survey_completions_path(@survey), method: :post, class: "new"
+  = button_to "Complete Survey", survey_completions_path(@survey), method: :post, class: "new" unless @completed_survey
   = button_to "Destroy this survey", @survey, method: :delete

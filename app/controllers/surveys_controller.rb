@@ -13,6 +13,7 @@
   def show
     authorize @survey, :show?
     @page_title = @survey.survey_name
+    @completed_survey = current_user.completed_surveys.find_by(id: @survey.id)
   end
 
   def new
