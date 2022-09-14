@@ -34,10 +34,8 @@
     respond_to do |format|
       if @survey.save
         format.html { redirect_to survey_url(@survey), notice: "Survey was successfully created." }
-        format.json { render :show, status: :created, location: @survey }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @survey.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -48,10 +46,8 @@
     respond_to do |format|
       if @survey.update(survey_params)
         format.html { redirect_to survey_url(@survey), notice: "Survey was successfully updated." }
-        format.json { render :show, status: :ok, location: @survey }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @survey.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -62,7 +58,6 @@
 
     respond_to do |format|
       format.html { redirect_to surveys_url, notice: "Survey was successfully destroyed." }
-      format.json { head :no_content }
     end
   end
 

@@ -1,16 +1,18 @@
 = link_to survey_path(survey) do
-  .card
-    .card-body
-      .row
-        .col-sm-6
-          = image_tag "https://picsum.photos/200/100", class: "survey-image"
-        .col-sm-6
-          %h3.survey-name= survey.survey_name
-          %p
-            %span.survey-reward
-              %strong Survey Reward:
-              = number_to_currency(survey.cpi)
-          %p.lead-time
-            %span.survey-start= time_format(survey.start_date)
-            %span.pull-right
-              Survey Status: #{distance_of_time_in_words(survey.created_at, Time.now)} ago
+  .row
+    .col-sm-6
+      = image_tag "https://picsum.photos/200/100", class: "survey-image"
+    .col-sm-6
+      %h4.survey-name= survey.survey_name
+      %p
+        %span
+          %strong Survey Reward:
+          = number_to_currency(survey.cpi)
+        |
+        %span 
+          %strong Survey Length: 
+        = survey.loi
+      %p.lead-time
+        %span.survey-start= time_format(survey.start_date)
+        %span.pull-right
+          Survey Status: #{distance_of_time_in_words(survey.created_at, Time.now)} ago
