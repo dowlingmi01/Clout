@@ -237,6 +237,8 @@ GEM
     stimulus-rails (1.1.0)
       railties (>= 6.0.0)
     strscan (3.0.4)
+    tailwindcss-rails (2.0.13-arm64-darwin)
+      railties (>= 6.0.0)
     tailwindcss-rails (2.0.13-x86_64-darwin)
       railties (>= 6.0.0)
     tailwindcss-rails (2.0.13-x86_64-linux)
