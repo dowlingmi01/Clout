@@ -6,8 +6,7 @@
         - @profile.errors.full_messages.each do |message|
           %li= message
 
-  = @user.first_name
-  = @user.last_name
+  = @user.full_name
 
   .form-inputs
     = f.input :age, collection: 0..99, prompt: "Select your age"
