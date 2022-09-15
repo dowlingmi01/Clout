@@ -12,7 +12,7 @@
       %tr
         %td= enrollment.survey.survey_name
         %td= enrollment.user.email
-        %td= enrollment.status.titleize
+        %td= enrollment.status.to_s.titleize
         %td
           = link_to "Show this enrollment", enrollment
 = link_to "New enrollment", new_enrollment_path
