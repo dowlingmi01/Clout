@@ -1,37 +1,39 @@
-.card
-  .card-body
-    %h2 Sign up
-    = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-      = render "devise/shared/error_messages", resource: resource
-      .row
-        .col-md-6
-          .form-group
-            = f.label :email
-            %br/
-            = f.email_field :email, autofocus: true, autocomplete: "email",class:"form-control"
-          .form-group
-            = f.label :first_name
-            %br/
-            = f.text_field :first_name, autocomplete: "first-name",class:"form-control"
-          .form-group
-            = f.label :last_name
-            %br/
-            = f.text_field :last_name, autocomplete: "last-name",class:"form-control"
-        .col-md-6
-          .form-group
-            = f.label :password
-            - if @minimum_password_length
-              %em
-                (#{@minimum_password_length} characters minimum)
-            %br/
-            = f.password_field :password, autocomplete: "new-password",class:"form-control"
-          .form-group
-            = f.label :password_confirmation
-            %br/
-            = f.password_field :password_confirmation, autocomplete: "new-password",class:"form-control"
-        .col-md-10
-        .col-md-2
-          .form-group
-            = f.submit "Sign up", class: "btn btn-primary btn-block"
-            .auth-links.register-text
-              = render "devise/shared/links"
+- if devise_mapping.registerable?
+  .min-h-full.flex.flex-col.justify-center.py-12.sm:px-6.lg:px-8
+    .sm:mx-auto.sm:w-full.sm:max-w-md
+      = image_tag 'logos/logo-color.png', class: "mx-auto h-12 w-auto"
+      %h2.mt-6.text-center.text-3xl.font-extrabold.text-gray-900
+        Sign Up
+    .mt-8.sm:mx-auto.sm:w-full.sm:max-w-md
+      .bg-white.py-8.px-4.shadow.sm:rounded-lg.sm:px-10
+        = form_for resource, as: resource_name, url: registration_path(resource_name) do |f|
+          = render "devise/shared/error_messages", resource: resource
+          .my-2
+            = f.label :email, class: 'block text-sm font-medium text-gray-700'
+            .mt-1
+              = f.email_field :email, required: true, placeholder: true, autofocus: true, autocomplete: "email", class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+          .my-2
+            = f.label :first_name, class: 'block text-sm font-medium text-gray-700'
+            .mt-1
+              = f.text_field :first_name, required: true, placeholder: true, autofocus: true, autocomplete: "email", class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+          .my-2
+            = f.label :last_name, class: 'block text-sm font-medium text-gray-700'
+            .mt-1
+              = f.text_field :last_name, required: true, placeholder: true, autofocus: true, autocomplete: "email", class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+
+          .my-2
+            = f.label :password, class: 'block text-sm font-medium text-gray-700'
+            .mt-1
+              = f.password_field :password, required: true, placeholder: true, autocomplete: false,  class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+              - if @minimum_password_length
+                %em
+                  (#{@minimum_password_length} characters minimum)
+          .my-2
+            = f.label :password_confirmation, class: 'block text-sm font-medium text-gray-700'
+            .mt-1
+              = f.password_field :password_confirmation, autocomplete: false, required: true, class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+          .my-2
+            %button.w-full.flex.justify-center.mt-4.py-2.px-4.border.border-transparent.rounded-md.shadow-sm.text-sm.font-medium.text-white.bg-blue-600.hover:bg-blue-700.focus:outline-none.focus:ring-2.focus:ring-offset-2.focus:ring-blue-500{:type => "submit"}
+              =t("devise.registrations.new.sign_up")
+      .my-2
+        = render "devise/shared/links"
