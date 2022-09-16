@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show]
   resources :categories, only: [:show]
-  resources :profiles
+  resources :profiles, path: 'my-profile', except: :show
   resources :enrollments
   root "home#index"
 

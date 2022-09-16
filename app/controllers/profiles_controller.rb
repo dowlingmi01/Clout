@@ -7,13 +7,7 @@ class ProfilesController < ApplicationController
 
 
   def index
-    @profiles = Profile.all
-    @users = User.all
-    @user_has_profile = current_user.profile
-    @user_admin = current_user.admin
-  end
-
-  def show
+    @profile = current_user.profile
   end
 
   def new
@@ -27,7 +21,7 @@ class ProfilesController < ApplicationController
     @profile = @user.build_profile(profile_params)
     respond_to do |format|
       if @profile.save
-        format.html { redirect_to profile_url(@profile), notice: "Profile was successfully created." }
+        format.html { redirect_to profiles_url, notice: "Profile was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -37,7 +31,7 @@ class ProfilesController < ApplicationController
   def update
     respond_to do |format|
       if @profile.update(profile_params)
-        format.html { redirect_to profile_url(@profile), notice: "Profile was successfully updated." }
+        format.html { redirect_to profiles_url, notice: "Profile was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -65,7 +59,7 @@ class ProfilesController < ApplicationController
     def find_current_user_profile
       @profile = current_user.profile
       unless @profile 
-        return redirect_to profiles_path, alert: "You shall not pass"
+        return redirect_to profiles_path
       end
     end
 
