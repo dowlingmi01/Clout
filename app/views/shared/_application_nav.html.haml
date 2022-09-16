@@ -1,16 +1,17 @@
-%body
-  .cover-container.d-flex.h-100.p-3.mx-auto.flex-column
-    %header.masthead.mb-auto
-      .inner
-        %h3.masthead-brand CloutCloud
-        %nav.nav.nav-masthead.justify-content-center
-          = link_to "Home", root_path, class: "nav-link"
-          = link_to "Surveys", surveys_path, class: "nav-link"
-          = link_to "Enrollments", enrollments_path, class: "nav-link"
 
-          = link_to "Profile", profiles_path, class: "nav-link"
-          - if user_signed_in?
-            = link_to "My Surveys", user_path(current_user), class: "nav-link" if current_page?("/users/#<current_user.username")
+%nav.bg-gray-900
+  .mx-auto.max-w-7xl.px-4.sm.px-6.lg.px-8
+    .flex.h-16.items-center.justify-between
+      = image_tag("logos/ccname.png", width: "150px")
+      .flex.items-center
+        .flex-shrink-0
+          = link_to "Home", root_path, class:"text-sm font-medium text-gray-200 transition-colors duration-300 cursor-pointer transform hover:text-blue-400"
+          = link_to "Surveys", surveys_path, class:"text-sm font-medium text-gray-200 transition-colors duration-300 cursor-pointer transform hover:text-blue-400"
+          = link_to "Enrollments", enrollments_path, class:"text-sm font-medium text-gray-200 transition-colors duration-300 cursor-pointer transform hover:text-blue-400"
+          = link_to "Profiles", profiles_path, class:"text-sm font-medium text-gray-200 transition-colors duration-300 cursor-pointer transform hover:text-blue-400"
+          = login_helper "text-sm font-medium text-gray-200 transition-colors duration-300 cursor-pointer transform hover:text-blue-400"
+        .flex.items-center
           - admins_only do
-            = link_to "Admin", admin_root_path, class: "nav-link"
-          = login_helper "nav-link"
+            = link_to "Admin", admin_root_path, class:"text-sm font-medium text-gray-200 transition-colors duration-300 cursor-pointer transform hover:text-blue-400"
+
+

@@ -1,7 +1,31 @@
 {
+  "name": "app",
   "dependencies": {
-    "bootstrap": "4.4.1",
-    "jquery": "^3.6.1",
-    "popper.js": "^1.16.1"
-  }
+    "@headlessui/vue": "^1.6.1",
+    "@heroicons/vue": "^1.0.6",
+    "@hotwired/stimulus": "^3.0.1",
+    "@hotwired/turbo-rails": "^7.1.1",
+    "@tailwindcss/forms": "^0.5.2",
+    "@vue/compiler-sfc": "^3.2.33",
+    "autoprefixer": "^10.4.7",
+    "axios": "^0.27.2",
+    "esbuild": "^0.14.39",
+    "esbuild-plugin-vue3": "^0.3.0",
+    "inputmask": "^5.0.7",
+    "postcss": "^8.4.14",
+    "postcss-import": "^14.1.0",
+    "tailwindcss": "^3.1.8"
+  },
+  "scripts": {
+    "build": "./build.js",
+    "build:js": "./build-once.js",
+    "build:css": "tailwindcss --postcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css"
+  },
+  "devDependencies": {
+    "@prettier/plugin-ruby": "^3.1.2",
+    "prettier": "^2.6.2",
+    "prettier-plugin-tailwindcss": "^0.1.11",
+    "yarn-upgrade-all": "^0.7.1"
+  },
+  "packageManager": "yarn@3.2.1"
 }

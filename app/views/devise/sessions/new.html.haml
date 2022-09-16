@@ -1,21 +1,31 @@
-.login
-  .card
-    .card-body
-      %h2 Log in
-      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-        .form-group
-          = f.label :email
-          %br/
-          = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"
-        .form-group
-          = f.label :password
-          %br/
-          = f.password_field :password, autocomplete: "current-password", class: "form-control"
-        - if devise_mapping.rememberable?
-          .form-group
-            = f.check_box :remember_me
-            = f.label :remember_me
-        .form-group
-          = f.submit "Log in", class: "btn btn-primary"
-      .auth-links
-        = render "devise/shared/links"
+.min-h-full.flex.flex-col.justify-center.py-12.sm:px-6.lg:px-8
+  .sm:mx-auto.sm:w-full.sm:max-w-md
+    = image_tag 'logos/logo-color.png', class: "mx-auto h-12 w-auto"
+    %h2.mt-6.text-center.text-3xl.font-extrabold.text-gray-900
+      Sign in to your account
+  .mt-8.sm:mx-auto.sm:w-full.sm:max-w-md
+    .bg-white.py-8.px-4.shadow.sm:rounded-lg.sm:px-10
+      = form_for resource, as: resource_name, url: session_path(resource_name), class: 'space-y-6' do |f|
+        = render "devise/shared/error_messages", resource: resource
+        .my-2
+          = f.label :email, class: 'block text-sm font-medium text-gray-700'
+          .mt-1
+            = f.email_field :email, autofocus: true, autocomplete: "email", required: true, class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+
+        .my-2
+          = f.label :password, class: 'block text-sm font-medium text-gray-700'
+          .mt-1
+            = f.password_field :password, autocomplete: false, required: true, class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-orange-500 sm:text-sm"
+        .flex.items-center.justify-between
+          - if devise_mapping.rememberable?
+            .flex.items-center
+              = f.check_box :remember_me, class: 'h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded'
+              = f.label :remember_me, class: 'ml-2 block text-sm text-gray-900'
+          .text-sm
+            = link_to new_password_path(resource_name), class: "font-medium text-blue-600 hover:text-blue-500" do
+              = t("devise.passwords.new.forgot_your_password")
+        .my-2
+          %button.w-full.flex.justify-center.mt-4.py-2.px-4.border.border-transparent.rounded-md.shadow-sm.text-sm.font-medium.text-white.bg-blue-600.hover:bg-blue-700.focus:outline-none.focus:ring-2.focus:ring-offset-2.focus:ring-blue-500{:type => "submit"}
+            =t("devise.sessions.new.sign_in")
+    .my-2
+      = render "devise/shared/links"
