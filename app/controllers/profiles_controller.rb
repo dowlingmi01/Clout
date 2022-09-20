@@ -8,6 +8,7 @@ class ProfilesController < ApplicationController
 
   def index
     @profile = current_user.profile
+    @surveys = current_user.completed_surveys
   end
 
   def new

@@ -3,6 +3,8 @@ class User < ApplicationRecord
   has_many :completions
   has_many :completed_surveys, through: :completions
   has_many :enrollments
+  has_many :rewards_cashes, dependent: :destroy
+  has_many :experiences
   has_one :profile
   validates :first_name, :last_name, presence: true
   # Include default devise modules. Others available are:
@@ -20,6 +22,14 @@ class User < ApplicationRecord
 
    def enroll_survey(survey)
      self.enrollments.create(survey: survey)
+   end
+
+   def total_rewards_cash
+    rewards_cashes.sum(:rewards_cash_amount)
+   end
+
+   def total_experience
+    experiences.sum(:experience_amount)
    end
 
 end

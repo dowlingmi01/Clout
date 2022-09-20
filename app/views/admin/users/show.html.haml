@@ -3,12 +3,14 @@
 	%thead
 		%tr
 			%th Email
-			%th Username
+			%th Full name
 			%th Surveys
 			%th Enrollments
+			%th Completed Surveys
 	%tbody
 		%tr
 			%th= @user.email
-			%th= @user.username
+			%th= @user.full_name
 			%th= @user.organized_surveys.count
 			%th= @user.enrollments.count
+			%th= @user.completed_surveys.count

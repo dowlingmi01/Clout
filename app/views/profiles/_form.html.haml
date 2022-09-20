@@ -1,17 +1,11 @@
 = simple_form_for @profile do |f|
-  - if @profile.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@profile.errors.count, "error")} prohibited this profile from being saved:"
-      %ul
-        - @profile.errors.full_messages.each do |message|
-          %li= message
-
   = @user.full_name
 
   .form-inputs
-    = f.input :age, collection: 0..99, prompt: "Select your age"
-    = f.input :gender, collection: Profile.select_options_for_gender, prompt: "Select your gender"
-    = f.input :ethnicity, collection: Profile.select_options_for_ethnicity, prompt: "Select your ethnicity"
-    = f.country_select :country
+    = f.input :age, collection: 0..99, prompt: "Select your age", error: 'Please select your age'
+    = f.input :gender, collection: Profile.select_options_for_gender, prompt: "Select your gender", error: 'Please select your gender'
+    = f.input :ethnicity, collection: Profile.select_options_for_ethnicity, prompt: "Select your ethnicity", error: 'Please select your ethnicity'
+    %p Country
+    = f.country_select :country, error: 'Please select a country'
   .form-actions
     = f.button :submit
