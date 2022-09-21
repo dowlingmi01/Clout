@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_10_211226) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_20_194508) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,6 +40,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_10_211226) do
     t.index ["user_id"], name: "index_enrollments_on_user_id"
   end
 
+  create_table "experiences", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "survey_id", null: false
+    t.integer "experience_amount"
+    t.text "comments"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["survey_id"], name: "index_experiences_on_survey_id"
+    t.index ["user_id"], name: "index_experiences_on_user_id"
+  end
+
   create_table "profiles", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.integer "age"
@@ -51,6 +62,29 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_10_211226) do
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
+  create_table "rewards_cashes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "survey_id", null: false
+    t.decimal "rewards_cash_amount"
+    t.text "comments"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["survey_id"], name: "index_rewards_cashes_on_survey_id"
+    t.index ["user_id"], name: "index_rewards_cashes_on_user_id"
+  end
+
+  create_table "survey_rewards", force: :cascade do |t|
+    t.bigint "survey_id"
+    t.bigint "user_id"
+    t.decimal "rewards_cashes"
+    t.integer "experiences"
+    t.datetime "rewarded_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["survey_id"], name: "index_survey_rewards_on_survey_id"
+    t.index ["user_id"], name: "index_survey_rewards_on_user_id"
+  end
+
   create_table "surveys", force: :cascade do |t|
     t.string "survey_name"
     t.text "description"
@@ -60,7 +94,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_10_211226) do
     t.bigint "user_id"
     t.datetime "start_date"
     t.datetime "end_date"
-    t.integer "cpi"
+    t.decimal "cpi"
     t.integer "incidence"
     t.integer "loi"
     t.integer "category_id"
@@ -88,6 +122,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_10_211226) do
   add_foreign_key "completions", "users"
   add_foreign_key "enrollments", "surveys"
   add_foreign_key "enrollments", "users"
+  add_foreign_key "experiences", "surveys"
+  add_foreign_key "experiences", "users"
   add_foreign_key "profiles", "users"
+  add_foreign_key "rewards_cashes", "surveys"
+  add_foreign_key "rewards_cashes", "users"
   add_foreign_key "surveys", "users"
 end

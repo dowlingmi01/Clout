@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   resources :profiles, path: 'my-profile', except: :show
   resources :enrollments
   root "home#index"
-
   resources :surveys do
     resources :completions, only: [:create]
     resources :enrollments, only: [:new, :create]

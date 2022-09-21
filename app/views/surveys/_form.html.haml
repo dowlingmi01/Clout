@@ -5,10 +5,11 @@
       = f.input :description
       = f.input :start_date, as: :date, start_year: Date.today.year, ampm: true, order: [:month, :day, :year]
       = f.input :end_date, as: :date, start_year: Date.today.year, ampm: true, order: [:month, :day, :year]
-      = f.input :location
+      %p Location
+      = f.country_select :location
       = f.input :category_id, collection: Category.all, label: "Select Category", prompt: true
-      = f.input :cpi
-      = f.input :loi
+      = f.input :cpi, input_html: { min: '0', step: 'any'}
+      = f.input :loi, input_html: { min: '0', step: 'any'}
       = f.button :submit, class: "btn btn-primary"
     %p
       = link_to "Back", surveys_path

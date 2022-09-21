@@ -1,6 +1,11 @@
 - if @profile 
   %p#notice= notice
-
+  %p CloutCash:
+  %strong=  current_user.total_rewards_cash
+  %p CloutXP: 
+  %strong= current_user.total_experience
+  %p Completed Surveys:
+  %strong= @surveys.count
   %p
     %b User:
     = @profile.user.full_name

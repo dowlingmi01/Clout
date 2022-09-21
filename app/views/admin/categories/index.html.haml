@@ -16,7 +16,7 @@
         %tr
           %td= category.name
           %td= time_format(category.created_at)
-          %td= "Surveys"
-          %td
-            = link_to "View", '#'
+          %td= link_to "Surveys", category_path(category)
+          %td 
             | #{link_to "Edit", edit_admin_category_path(category)} | #{link_to "Delete", admin_category_path(category), data: {turbo: false, method: :delete, confirm: 'Are you sure?'}}
+%p= link_to "Back to Dashboard", admin_root_path
