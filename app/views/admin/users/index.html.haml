@@ -25,13 +25,12 @@
               / Odd row
             - @users.each do |user|
               %tr
-                %td= link_to user.id, admin_user_path(user), class:".whitespace-nowrap.py-4.pl-4.pr-3.text-sm.font-medium.text-gray-900.sm:pl-6"
-                %td= link_to user.first_name + " " + user.last_name, class:".whitespace-nowrap.px-3.py-4.text-sm.text-gray-500" 
-                %td= link_to user.email, class: ".whitespace-nowrap.px-3.py-4.text-sm.text-gray-500" 
-                %td= link_to user.organized_surveys.count, user_path(user), class:".whitespace-nowrap.px-3.py-4.text-sm.text-gray-500" 
-                %td= link_to user.profile.age, class:".whitespace-nowrap.px-3.py-4.text-sm.text-gray-500" 
-                %td= link_to user.profile.gender.titleize, class:".whitespace-nowrap.px-3.py-4.text-sm.text-gray-500" 
                 %td.relative.whitespace-nowrap.py-4.pl-3.pr-4.text-right.text-sm.font-medium.sm:pr-6
+                %td.whitespace-nowrap.py-4.pl-4.pr-3.text-sm.font-medium.text-gray-900.sm= link_to user.id, admin_user_path(user)
+                %td.whitespace-nowrap.py-4.pl-4.pr-3.text-sm.font-medium.text-gray-900.sm= link_to user.full_name, admin_user_path(user)
+                %td.whitespace-nowrap.py-4.pl-4.pr-3.text-sm.font-medium.text-gray-900.sm= link_to user.email, admin_user_path(user)
+                %td.whitespace-nowrap.py-4.pl-4.pr-3.text-sm.font-medium.text-gray-900.sm= link_to user.organized_surveys.count, user_path(user)
+                %td.relative.whitespace-nowrap.py-4.pl-3.pr-4.text-right.text-sm.font-medium.sm
                   %a.text-indigo-600.hover:text-indigo-900{:href => "#"}
                     Edit
             / More people...
