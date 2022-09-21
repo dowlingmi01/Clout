@@ -1,6 +1,10 @@
 / This example requires Tailwind CSS v2.0+
 = link_to survey_path(survey) do
-  .bg-white.rounded.shadow.border.p-6.w-64
-    %h5.text-2xl.font-bold.mb-4.mt-0= survey.survey_name
-    %p.text-sky-600.text-sm.font-bold= number_to_currency(survey.cpi)
-    %p.text-gray-700.text-sm= survey.category.name
+  .p-6.m-4.max-w-lg.mx-auto.bg-white.rounded-xl.shadow-md.flex.items-center.space-x-10
+    .shrink-0
+      %img.h-15.w-15{:alt => "Category", :src => "https://picsum.photos/100"}/
+    %div
+      %h5.text-2xl.font-bold.mb-4.mt-0= survey.category.name
+      %p.text-sky-600.text-sm.font-bold.text-left= number_to_currency(survey.cpi)
+      %p.text-sky-600.text-sm.font-bold.text-left= survey.loi
+
