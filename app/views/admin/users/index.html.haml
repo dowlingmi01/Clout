@@ -17,6 +17,8 @@
                 %th.px-3.text-left.text-sm.font-semibold.text-gray-900{:class => "py-3.5", :scope => "col"} Full Name
                 %th.px-3.text-left.text-sm.font-semibold.text-gray-900{:class => "py-3.5", :scope => "col"} Email
                 %th.px-3.text-left.text-sm.font-semibold.text-gray-900{:class => "py-3.5", :scope => "col"} Surveys
+                %th.px-3.text-left.text-sm.font-semibold.text-gray-900{:class => "py-3.5", :scope => "col"} Age
+                %th.px-3.text-left.text-sm.font-semibold.text-gray-900{:class => "py-3.5", :scope => "col"} Gender
                 %th.relative.pl-3.pr-4.sm:pr-6{:class => "py-3.5", :scope => "col"}
                   %span.sr-only Edit
             %tbody.bg-white
@@ -27,6 +29,8 @@
                 %td= link_to user.first_name + " " + user.last_name, class:".whitespace-nowrap.px-3.py-4.text-sm.text-gray-500" 
                 %td= link_to user.email, class: ".whitespace-nowrap.px-3.py-4.text-sm.text-gray-500" 
                 %td= link_to user.organized_surveys.count, user_path(user), class:".whitespace-nowrap.px-3.py-4.text-sm.text-gray-500" 
+                %td= link_to user.profile.age, class:".whitespace-nowrap.px-3.py-4.text-sm.text-gray-500" 
+                %td= link_to user.profile.gender.titleize, class:".whitespace-nowrap.px-3.py-4.text-sm.text-gray-500" 
                 %td.relative.whitespace-nowrap.py-4.pl-3.pr-4.text-right.text-sm.font-medium.sm:pr-6
                   %a.text-indigo-600.hover:text-indigo-900{:href => "#"}
                     Edit

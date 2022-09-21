@@ -1,42 +1,16 @@
-/
-  This example requires Tailwind CSS v2.0+
-  
-  This example requires some changes to your config:
-  
-  ```
-  \// tailwind.config.js
-  const colors = require('tailwindcss/colors')
-  
-  module.exports = {
-  \// ...
-  theme: {
-  extend: {
-  colors: {
-  teal: colors.teal,
-  cyan: colors.cyan,
-  },
-  },
-  },
-  plugins: [
-  \// ...
-  require('@tailwindcss/forms'),
-  require('@tailwindcss/aspect-ratio'),
-  ],
-  }
-  ```
 .bg-white
   .relative.overflow-hidden
     %main
-      .bg-gray-900.pt-10.sm:pt-16.lg:overflow-hidden.lg:pt-8.lg:pb-14
+      .bg-slate-800.pt-10.sm:pt-16.lg:overflow-hidden.lg:pt-8.lg:pb-14
         .mx-auto.max-w-7xl.lg:px-8
           .lg:grid.lg:grid-cols-2.lg:gap-8
             .mx-auto.max-w-md.px-4.sm:max-w-2xl.sm:px-6.sm:text-center.lg:flex.lg:items-center.lg:px-0.lg:text-left
               .lg:py-24
                 %a.inline-flex.items-center.rounded-full.bg-black.p-1.pr-2.text-white.hover:text-gray-200.sm:text-base.lg:text-sm.xl:text-base{:href => "#"}
-                  %span.rounded-full.bg-gradient-to-r.from-blue-700.to-cyan-600.px-3.text-sm.font-semibold.leading-5.text-white{:class => "py-0.5"} We're recruiting micro-influencers
+                  %span.rounded-full.bg-gradient-to-r.from-blue-800.to-cyan-600.px-3.text-sm.font-semibold.leading-5.text-white{:class => "py-0.5"} We're recruiting micro-influencers
                   %span.ml-4.text-sm Learn more
                   / Heroicon name: mini/chevron-right
-                  %svg.ml-2.h-5.w-5.text-gray-500{"aria-hidden" => "true", :fill => "currentColor", :viewbox => "0 0 20 20", :xmlns => "http://www.w3.org/2000/svg"}
+                  %svg.ml-2.h-5.w-5.text-gray-300{"aria-hidden" => "true", :fill => "currentColor", :viewbox => "0 0 20 20", :xmlns => "http://www.w3.org/2000/svg"}
                     %path{"clip-rule" => "evenodd", :d => "M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z", "fill-rule" => "evenodd"}
                 %h1.mt-4.text-4xl.font-bold.tracking-tight.text-white.sm:mt-5.sm:text-6xl.lg:mt-6.xl:text-6xl
                   %span.block A better way to
