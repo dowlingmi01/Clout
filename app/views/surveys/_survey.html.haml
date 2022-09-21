@@ -13,5 +13,6 @@
           %strong Survey Length: 
         = survey.loi
       %p.lead-time
+        %span.survey-start= time_format(survey.start_date)
         %span.pull-right
           Survey Status: #{distance_of_time_in_words(survey.created_at, Time.now)} ago
