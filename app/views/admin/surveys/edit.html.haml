@@ -1,7 +1,8 @@
 = render "admin/application/sidebar"
 %body
+%header
 .min-h-full.flex.flex-col.justify-center.py-12.sm:px-6.lg:px-8
-  %h2.mt-6.text-center.text-3xl.font-extrabold.text-gray-900
-    New Category
-  = render "form", category: @category
+  %h2.mt-6.text-center.text-3xl.font-extrabold.text-gray-900 Edit Survey
+  = render "form", survey: @survey
 %p{:class => "inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto", :type => "button"}= link_to "Back", admin_categories_path
+

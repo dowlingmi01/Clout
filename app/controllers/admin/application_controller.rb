@@ -7,6 +7,9 @@ class Admin::ApplicationController < ApplicationController
     @surveys = Survey.all
     @categories = Category.all
     @completions = Completion.all
+    @enrollments = Enrollment.all
+    @rewards_cashes = RewardsCash.sum(:rewards_cash_amount)
+    @experiences = Experience.sum(:experience_amount)
   end
 
   private

@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.2"
 
+gem 'sassc-rails'
 gem "rails", "~> 7.0.3", ">= 7.0.3.1"
 gem "sprockets-rails"
 gem "pg", "~> 1.1"
@@ -13,7 +14,6 @@ gem "stimulus-rails"
 gem "jbuilder"
 gem 'devise', '~> 4.8', '>= 4.8.1' #for authentication
 gem 'pundit', '~> 2.2' #for authorization
-gem 'bootstrap', '~> 5.2.0' #for styling
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.8'
 gem 'jquery-rails'
 gem 'simple_form', '~> 5.1'

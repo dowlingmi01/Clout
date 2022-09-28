@@ -1,0 +1,42 @@
+= render "admin/application/sidebar"
+.px-4.sm:px-6.lg:px-8
+  .sm:flex.sm:items-center
+    .sm:flex-auto
+      %h1.text-xl.font-semibold.text-gray-900= "Surveys: #{@surveys.count}"
+    .mt-4.sm:mt-0.sm:ml-16.sm:flex-none
+    - admins_only do
+      %button{:class => "inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto", :type => "button"}= link_to "New survey", new_survey_path
+  .mt-8.flex.flex-col
+    .-my-2.-mx-4.overflow-x-auto.sm:-mx-6.lg:-mx-8
+      .inline-block.min-w-full.py-2.align-middle.md:px-6.lg:px-8
+        .overflow-hidden.shadow.ring-1.ring-black.ring-opacity-5.md:rounded-lg
+          %table.min-w-full.divide-y.divide-gray-300
+            %thead.bg-gray-50
+              %tr
+                %th.pl-4.pr-3.text-left.text-sm.font-semibold.text-gray-900.sm:pl-6{:class => "py-3.5", :scope => "col"} Survey ID
+                %th.px-3.text-left.text-sm.font-semibold.text-gray-900{:class => "py-3.5", :scope => "col"} Name
+                %th.px-3.text-left.text-sm.font-semibold.text-gray-900{:class => "py-3.5", :scope => "col"} Created
+                %th.px-3.text-left.text-sm.font-semibold.text-gray-900{:class => "py-3.5", :scope => "col"} Survey
+                %th.px-3.text-left.text-sm.font-semibold.text-gray-900{:class => "py-3.5", :scope => "col"} Description
+                %th.px-3.text-left.text-sm.font-semibold.text-gray-900{:class => "py-3.5", :scope => "col"} Location
+                %th.px-3.text-left.text-sm.font-semibold.text-gray-900{:class => "py-3.5", :scope => "col"} Category
+                %th.px-3.text-left.text-sm.font-semibold.text-gray-900{:class => "py-3.5", :scope => "col"} CPI
+                %th.px-3.text-left.text-sm.font-semibold.text-gray-900{:class => "py-3.5", :scope => "col"} LOI
+            %tbody.divide-y.divide-gray-200.bg-white
+            - @surveys.each do |survey|
+              %tr
+                %td.whitespace-nowrap.py-4.pl-4.pr-3.text-sm.font-medium.text-gray-900= survey.id
+                %td.whitespace-nowrap.px-3.py-4.text-sm.text-gray-500= survey.survey_name
+                %td.whitespace-nowrap.px-3.py-4.text-sm.text-gray-500= time_format(survey.created_at)
+                %td.whitespace-nowrap.px-3.py-4.text-sm.text-gray-500= link_to "Survey", survey_path(survey)
+                %td.whitespace-nowrap.px-3.py-4.text-sm.text-gray-500= survey.description
+                %td.whitespace-nowrap.px-3.py-4.text-sm.text-gray-500= survey.location
+                %td.whitespace-nowrap.px-3.py-4.text-sm.text-gray-500= survey.category.name
+                %td.whitespace-nowrap.px-3.py-4.text-sm.text-gray-500= survey.cpi
+                %td.whitespace-nowrap.px-3.py-4.text-sm.text-gray-500= survey.loi
+
+                %td.relative.whitespace-nowrap.py-4.pl-3.pr-4.text-right.text-sm.font-medium.sm:pr-6
+                %td.relative.whitespace-nowrap.py-4.pl-3.pr-4.text-right.text-sm.font-medium.sm:pr-6
+                  %a.text-indigo-600= link_to "Edit", edit_admin_survey_path(survey), class: "edit" if policy(survey).edit?
+                  %a.text-indigo-600= button_to "Delete", survey_path(survey), method: :delete, data: {confirm: "Are you sure?"}, class: "delete" if policy(survey).destroy?                  
+%p{:class => "inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto", :type => "button"}= link_to "Back to Dashboard", admin_root_path

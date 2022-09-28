@@ -1,11 +1,34 @@
-%p{:style => "color: green"}= notice
-= render @survey
-%div 
+%p{:style => "color: green ", class: "text-center"}= notice
+.relative.mx-auto.bg-gray
+  .absolute.inset-0
+    .bg-white{:class => "h-1/3 sm:h-2/3"}
+  .relative.mx-auto.max-w-7xl
+    .mx-auto.mt-12.grid.max-w-lg.gap-5
+      .flex.flex-col.overflow-hidden.rounded-lg.shadow-lg
+        .flex-shrink-0
+          %img.h-50.w-full.object-cover{:alt => "", :src => "https://picsum.photos/100"}/
+        .flex.flex-1.flex-col.justify-between.bg-white.p-6
+          .flex-1
+            %p.text-sm.font-medium.text-indigo-600
+              %p.text-2xl.font-semibold.text-gray-900.text-center= @survey.survey_name
+              %p.text-indigo-600.font-bold.text-sm.mb-4.mt-0.text-center= @survey.category.name
+              %p.py-1.text-md.font-semibold.text-gray-700= "Survey Reward: #{number_to_currency(@survey.cpi)}"
+              %p.py-1.text-md.font-semibold.text-gray-700= "CloutCash: #{number_to_currency(@survey.cpi/2)}"
+              %p.py-1.text-md.font-semibold.text-gray-700 CloutXP: 10xp
+              %p.py-1.text-md.font-semibold.text-gray-700= "Duration: #{@survey.loi}m"
+              %p.text-gray-700.font-bold.text-md.mb-4.mt-0= "Description: #{@survey.description}"
+              %p.text-gray-700.font-bold.text-md.mb-4.mt-0= "Start Date: #{(@survey.start_date).strftime "%d-%m-%Y"}"
+              %p.text-gray-700.font-bold.text-md.mb-4.mt-0= "End Date: #{(@survey.end_date).strftime "%d-%m-%Y"}"
+              %p.text-gray-700.font-bold.text-md.mb-4.mt-0= "Location: #{@survey.location}"
+              .px-6.pt-4.pb-2.text-center
+                = button_to 'Start Survey', survey_completions_path(@survey), method: :post, class: "bg-gradient-to-r from-blue-500 to-green-400 hover:from-green-700 hover:to-blue-700 text-white font-bold py-2 px-4 rounded-full" unless @completed_survey
+              %div.p-2.text-center
+                .text-gray-600.text-lg.border-t.py-3= " #{time_ago_in_words(@survey.created_at)} ago"
+
+.text-center
   = link_to "Edit this survey", edit_survey_path(@survey)
   |
   = link_to "Back to surveys", surveys_path
   |
   = link_to "Enroll Survey", new_survey_enrollment_path(@survey), method: :post, class: "new"
-  |
-  = button_to "Complete Survey", survey_completions_path(@survey), method: :post, class: "new" unless @completed_survey
   = button_to "Destroy this survey", @survey, method: :delete

@@ -1,16 +1,26 @@
-%h1 Users page
-%table.table.table-striped.table-responsive
-	%thead
-		%tr
-			%th Email
-			%th Full name
-			%th Surveys
-			%th Enrollments
-			%th Completed Surveys
-	%tbody
-		%tr
-			%th= @user.email
-			%th= @user.full_name
-			%th= @user.organized_surveys.count
-			%th= @user.enrollments.count
-			%th= @user.completed_surveys.count
+= render "admin/application/sidebar"
+.px-4.sm:px-6.lg:px-8
+.sm:flex.sm:items-center
+	.sm:flex-auto
+		%h1.text-xl.font-semibold.text-gray-900 Users
+		%p.mt-2.text-sm.text-gray-700 A list of all the users including their name, email, full name, organized surveys, age, gender, ethnicity and country.
+.mt-8.flex.flex-col
+	.-my-2.-mx-4.overflow-x-auto.sm:-mx-6.lg:-mx-8
+		.inline-block.min-w-full.py-2.align-middle.md:px-6.lg:px-8
+			.overflow-hidden.shadow.ring-1.ring-black.ring-opacity-5.md:rounded-lg
+				%table.min-w-full.divide-y.divide-gray-300
+					%thead.bg-gray-50
+						%tr
+							%th.pl-4.pr-3.text-left.text-sm.font-semibold.text-gray-900.sm:pl-6{:class => "py-3.5", :scope => "col"} Email
+							%th.px-3.text-left.text-sm.font-semibold.text-gray-900{:class => "py-3.5", :scope => "col"} Full Name
+							%th.px-3.text-left.text-sm.font-semibold.text-gray-900{:class => "py-3.5", :scope => "col"} Surveys
+							%th.px-3.text-left.text-sm.font-semibold.text-gray-900{:class => "py-3.5", :scope => "col"} Enrollments
+							%th.px-3.text-left.text-sm.font-semibold.text-gray-900{:class => "py-3.5", :scope => "col"} Completed Surveys
+					%tbody.divide-y.divide-gray-200.bg-white
+						%tr
+							%td.whitespace-nowrap.py-4.pl-4.pr-3.text-sm.font-medium.text-gray-900= @user.email
+							%td.whitespace-nowrap.px-3.py-4.text-sm.text-gray-500= @user.full_name
+							%td.whitespace-nowrap.px-3.py-4.text-sm.text-gray-500= @user.organized_surveys.count
+							%td.whitespace-nowrap.px-3.py-4.text-sm.text-gray-500= @user.enrollments.count
+							%td.whitespace-nowrap.px-3.py-4.text-sm.text-gray-500= @user.completed_surveys.count
+%p{:class => "inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto", :type => "button"}= link_to "Back to Users", admin_users_path
