@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
   namespace :admin do
     root 'application#index'
-    resources :users, only: [:index, :show]
+    resources :users
     resources :categories, only: [:index, :new, :create, :edit, :update, :destroy]
+    resources :surveys, only: [:index, :new, :create, :edit, :update, :destroy]
   end
 
-  devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register'}
+  devise_for :users, path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register'}
 
   resources :users, only: [:show]
   resources :categories, only: [:show]

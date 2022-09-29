@@ -1,28 +1,30 @@
-- if @profile 
-  %p#notice= notice
-  %p CloutCash:
-  %strong=  current_user.total_rewards_cash
-  %p CloutXP: 
-  %strong= current_user.total_experience
-  %p Completed Surveys:
-  %strong= @surveys.count
-  %p
-    %b User:
-    = @profile.user.full_name
-  %p
-    %b Age:
-    = @profile.age
-  %p
-    %b Gender:
-    = @profile.gender.titleize
-  %p
-    %b Ethnicity:
-    = @profile.ethnicity.titleize
-  %p
-    %b Country:
-    = @profile.country
+- if @profile
+  .text-center
+    %p#notice= notice
+    %p CloutCash:
+    %strong=  current_user.total_rewards_cash
+    %p CloutXP: 
+    %strong= current_user.total_experience
+    %p Completed Surveys:
+    %strong= @surveys.count
+    %p
+      %b User:
+      = @profile.user.full_name
+    %p
+      %b Age:
+      = @profile.age
+    %p
+      %b Gender:
+      = @profile.gender.titleize
+    %p
+      %b Ethnicity:
+      = @profile.ethnicity.titleize
+    %p
+      %b Country:
+      = @profile.country
 
-  = link_to 'Edit', edit_profile_path(@profile) if @profile.user == current_user
+    = link_to 'Edit', edit_profile_path(@profile) if @profile.user == current_user
 
-- else 
+- else
+.text-center
   = link_to 'Create Profile', new_profile_path 

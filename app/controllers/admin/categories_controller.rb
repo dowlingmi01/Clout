@@ -38,11 +38,10 @@ class Admin::CategoriesController < Admin::ApplicationController
 	end
 
 	def destroy
-   		authorize @category, :destroy?
     	@category.destroy
 
 	    respond_to do |format|
-	      format.html { redirect_to surveys_url, notice: "Category was successfully destroyed." }
+	      format.html { redirect_to admin_categories_path, notice: "Category was successfully destroyed." }
 	      format.json { head :no_content }
     end
 

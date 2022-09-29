@@ -1,11 +1,11 @@
-/ This example requires Tailwind CSS v2.0+
+= render "admin/application/sidebar"
 .px-4.sm:px-6.lg:px-8
   .sm:flex.sm:items-center
     .sm:flex-auto
-      %h1.text-xl.font-semibold.text-gray-900 Users
-      %p.mt-2.text-sm.text-gray-700 A list of all the users in your account including their name, title, email and role.
-    .mt-4.sm:mt-0.sm:ml-16.sm:flex-none
-      %button.inline-flex.items-center.justify-center.rounded-md.border.border-transparent.bg-indigo-600.px-4.py-2.text-sm.font-medium.text-white.shadow-sm.hover:bg-indigo-700.focus:outline-none.focus:ring-2.focus:ring-indigo-500.focus:ring-offset-2.sm:w-auto{:type => "button"} Add user
+      %h1.text-xl.font-semibold.text-gray-900= "Users: #{@users.count}"
+      %p.mt-2.text-sm.text-gray-700 A list of all the users including their name, email, full name, organized surveys, age, gender, ethnicity and country.
+      - admins_only do
+        %button{:class => "inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto", :type => "button"}= link_to "New User", new_admin_user_path, class: "new" 
   .mt-8.flex.flex-col
     .-my-2.-mx-4.overflow-x-auto.sm:-mx-6.lg:-mx-8
       .inline-block.min-w-full.py-2.align-middle.md:px-6.lg:px-8
@@ -19,19 +19,22 @@
                 %th.px-3.text-left.text-sm.font-semibold.text-gray-900{:class => "py-3.5", :scope => "col"} Surveys
                 %th.px-3.text-left.text-sm.font-semibold.text-gray-900{:class => "py-3.5", :scope => "col"} Age
                 %th.px-3.text-left.text-sm.font-semibold.text-gray-900{:class => "py-3.5", :scope => "col"} Gender
-                %th.relative.pl-3.pr-4.sm:pr-6{:class => "py-3.5", :scope => "col"}
-                  %span.sr-only Edit
-            %tbody.bg-white
-              / Odd row
+                %th.px-3.text-left.text-sm.font-semibold.text-gray-900{:class => "py-3.5", :scope => "col"} Ethnicity
+                %th.px-3.text-left.text-sm.font-semibold.text-gray-900{:class => "py-3.5", :scope => "col"} Country
+            %tbody.divide-y.divide-gray-200.bg-white
             - @users.each do |user|
               %tr
+                %td.whitespace-nowrap.py-4.pl-4.pr-3.text-sm.font-medium.text-gray-900= link_to user.id, admin_user_path(user)
+                %td.whitespace-nowrap.px-3.py-4.text-sm.text-gray-500= link_to user.full_name, admin_user_path(user)
+                %td.whitespace-nowrap.px-3.py-4.text-sm.text-gray-500= link_to user.email, admin_user_path(user)
+                %td.whitespace-nowrap.px-3.py-4.text-sm.text-gray-500= link_to user.organized_surveys.count, user_path(user)
+                %td.whitespace-nowrap.px-3.py-4.text-sm.text-gray-500= user.profile.age if user.profile
+                %td.whitespace-nowrap.px-3.py-4.text-sm.text-gray-500= user.profile.gender if user.profile
+                %td.whitespace-nowrap.px-3.py-4.text-sm.text-gray-500= user.profile.ethnicity if user.profile
+                %td.whitespace-nowrap.px-3.py-4.text-sm.text-gray-500= user.profile.country if user.profile
+
+
                 %td.relative.whitespace-nowrap.py-4.pl-3.pr-4.text-right.text-sm.font-medium.sm:pr-6
-                %td.whitespace-nowrap.py-4.pl-4.pr-3.text-sm.font-medium.text-gray-900.sm= link_to user.id, admin_user_path(user)
-                %td.whitespace-nowrap.py-4.pl-4.pr-3.text-sm.font-medium.text-gray-900.sm= link_to user.full_name, admin_user_path(user)
-                %td.whitespace-nowrap.py-4.pl-4.pr-3.text-sm.font-medium.text-gray-900.sm= link_to user.email, admin_user_path(user)
-                %td.whitespace-nowrap.py-4.pl-4.pr-3.text-sm.font-medium.text-gray-900.sm= link_to user.organized_surveys.count, user_path(user)
-                %td.relative.whitespace-nowrap.py-4.pl-3.pr-4.text-right.text-sm.font-medium.sm
-                  %a.text-indigo-600.hover:text-indigo-900{:href => "#"}
-                    Edit
-            / More people...
-%p= link_to "Back to Dashboard", admin_root_path
+                  %a.text-indigo-600= link_to "Edit", edit_admin_user_path(user)
+                  %a.text-indigo-600= button_to "Delete", admin_user_path(user), method: :delete, confirm: 'Are you sure?'
+%p{:class => "inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto", :type => "button"}= link_to "Back to Dashboard", admin_root_path

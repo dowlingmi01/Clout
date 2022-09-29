@@ -1,10 +1,11 @@
-%p{:style => "color: green"}= notice
-.h1 Categories
-%div
+%p{:style => "color: green ", class: "text-center"}= notice
+.h1.text-center Categories
+%div.text-center
   - @categories.each do |category|
     %li{:class => "#{"active" if current_page?("/categories/#{category.id}")}"}
       = link_to category.name, category_path(category)
-%h1.text-3xl.font-bold.mb-4.mt-0 Surveys
+%h1.text-3xl.font-bold.mb-4.mt-0.text-center Surveys
 - @surveys.each do |survey|
   = render survey
-= link_to "New survey", new_survey_path
+.text-center
+  = link_to "New survey", new_survey_path
