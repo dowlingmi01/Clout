@@ -1,3 +1,39 @@
-%footer.mastfoot.mt-auto.text-center
-  .inner
-    %p= @copyright
+/ Footer
+%footer.bg-veryDarkBlue
+  .container.flex.flex-col-reverse.justify-between.px-6.py-10.mx-auto.space-y-8.md:flex-row.md:space-y-0
+    / Logo and social links container
+    .flex.flex-col-reverse.items-center.justify-between.space-y-12.md:flex-col.md:space-y-0.md:items-start
+      .mx-auto.my-6.text-center.text-white.md:hidden
+        Copright © 2022, All Rights Reserved
+      / Logo
+      %div
+        %img.h-8{:alt => "", :src => ""}/
+      / Social Links Container
+      .flex.justify.center.space-x-4
+        / Link 1
+        %a{:href => "#"}
+          %img.h-8{:alt => "", :src => "images/icon-facebook.svg"}/
+        / Link 2
+        %a{:href => "#"}
+          %img.h-8{:alt => "", :src => "images/icon-twitter.svg"}/
+        / Link 3
+        %a{:href => "#"}
+          %img.h-8{:alt => "", :src => "images/icon-youtube.svg"}/
+    / List container
+    .flex.justify-around.space-x-32
+      .flex.flex-col.space-y-3.text-white
+        %a.hover:text-brightRed{:href => "#"} Home
+        %a.hover:text-brightRed{:href => "#"} Surveys
+        %a.hover:text-brightRed{:href => "#"} Enrollments
+      .flex.flex-col.space-y-3.text-white
+        %a.hover:text-brightRed{:href => "#"} Privacy Policy
+        %a.hover:text-brightRed{:href => "#"} Terms & Conditions
+    / Input Container
+    .flex-flex-col.justify-between
+      %form
+        .flex-space-x-3
+          %input.flex-1.px-4.rounded-full.focus:outline-none{:placeholder => "Subscribe", :type => "text"}/
+          %button.px-6.py-2.text-white.rounded-full.bg-brightRed.hover:bg-brightRedLight.focus:outline-none
+            Go
+      .hidden.text-white.py-6.md:block
+        %p= @copyright

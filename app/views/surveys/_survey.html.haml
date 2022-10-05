@@ -1,13 +1,13 @@
 .p-6.m-4.max-w-md.mx-auto.bg-white.rounded-xl.shadow-xl.flex.items-center.space-x-10
   .shrink-0
-    %img.h-48.w-50{:alt => "Category", :src => "https://picsum.photos/100"}/
+    %img.h-24.w-25{:alt => "Category", :src => "https://picsum.photos/100"}/
     .py-3.px-4.text-gray-600.text-md.text-center= " #{time_ago_in_words(survey.created_at)} ago"
   %div
     .px-2.pt-1.pb-2
     %p.text-2xl.font-bold= survey.survey_name
-    %p.text-sm.text-indigo-600.font-bold.mb-4.mt-0= survey.category.name
+    %p.text-sm.text-indigo-600.font-bold.mb-4.mt-0= link_to survey.category.name
     .pt-0.pb-0
     %p.inline-block.bg-gray-200.rounded-full.px-3.py-1.text-md.font-semibold.text-gray-700.mr-2.mb-2.cursor-default= "Reward: #{number_to_currency(survey.cpi)}"
     %p.inline-block.bg-gray-200.rounded-full.px-3.py-1.text-md.font-semibold.text-gray-700.mr-2.mb-2.cursor-default= "Duration: #{survey.loi}m"
     .px-6.pt-4.pb-2
-    %button{:class => "bg-gradient-to-r from-green-400 to-blue-500 hover:from-blue-700 hover:to-green-700 text-white font-bold py-2 px-4 rounded-full"}= link_to 'Show Survey', survey_path(survey)
+    %button{:class => "bg-gradient-to-r from-blue-400 to-slate-500 hover:from-slate-700 hover:to-blue-700 text-white font-bold py-2 px-4 rounded-full"}= link_to 'Show Survey', survey_path(survey)
