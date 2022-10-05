@@ -1,19 +1,57 @@
-%nav.bg-slate-800
-  .mx-auto.max-w-7xl.px-4.sm.px-6.lg.px-8
-    .flex.h-16.items-center.justify-between
-      = image_tag("logos/ccname.png", width: "150px")
-      .flex.items-center
-        .flex-shrink-0
-          = link_to "Home", root_path, class:"text-sm p-3 font-medium text-gray-200 transition-colors duration-300 cursor-pointer transform hover:text-blue-400"
-          = link_to "Surveys", surveys_path, class:"text-sm p-3 font-medium text-gray-200 transition-colors duration-300 cursor-pointer transform hover:text-blue-400"
-          = link_to "Enrollments", enrollments_path, class:"text-sm p-3 font-medium text-gray-200 transition-colors duration-300 cursor-pointer transform hover:text-blue-400"
-      .flex-items-center
-        .flex-shrink-0
-          = link_to "My Profile", profiles_path, class:"text-sm p-3 font-medium text-gray-200 transition-colors duration-300 cursor-pointer transform hover:text-blue-400"
-          - if user_signed_in?
-            = link_to current_user.email, edit_user_registration_path, class:"text-sm p-3 font-medium text-gray-200 transition-colors duration-300 cursor-pointer transform hover:text-blue-400"
-          = login_helper "text-sm p-3 font-medium text-gray-200 transition-colors duration-300 cursor-pointer transform hover:text-blue-400"
-          - admins_only do
-            = link_to "Admin", admin_root_path, class:"text-sm p-3 font-medium text-gray-200 transition-colors duration-300 cursor-pointer transform hover:text-blue-400"
+/ Nav bar
+%nav.bg-slate-800.py-4.px-3
+  / Flex container
+  .flex.items-center.justify-between
+    / Logo
+    .pt-2.px-6
+      = image_tag("logos/ccname", width: "150px")
+    / Menu Items
+    .hidden.md:flex.space-x-6
+      %p.hover.text-gray-100= link_to "Home", root_path
+      %p.hover.text-gray-100= link_to "Survey", surveys_path
+      %p.hover.text-gray-100= link_to "Enrollments", enrollments_path
+      %p.hover.text-gray-100= link_to "My Profile", profiles_path
+      - if user_signed_in?
+        %p.hover.text-gray-100= link_to current_user.email, edit_user_registration_path
+        = login_helper "text-gray-100"
+      - admins_only do
+        %p.hover.text-gray-100= link_to "Admin", admin_root_path
+    / Button
+    %a.hidden.p-3.px-6.pt-2.text-white.bg-brightRed.rounded-full.baseline.hover:bg-brightRedLight.md:block{:href => "#"} Get Started
+    / Hamburger Icon
+    %button#menu-btn.block.hamburger.md:hidden.focus:outline-none
+      %span.hamburger-top
+      %span.hamburger-middle
+      %span.hamburger-bottom
+  / Mobile Menu
+  .md:hidden
+    #menu.absolute.flex-col.items-center.self-end.hidden.py-8.mt-10.space-y-6.font-bold.bg-white.sm:w-auto.sm:self-center.left-6.right-6.drop-shadow-md
+      %p.hover.text-gray-100= link_to "Home", root_path
+      %p.hover.text-gray-100= link_to "Survey", surveys_path
+      %p.hover.text-gray-100= link_to "Enrollments", enrollments_path
+      %p.hover.text-gray-100= link_to "My Profile", profiles_path
+      - if user_signed_in?
+        %p.hover.text-gray-100= link_to current_user.email, edit_user_registration_path
+        = login_helper "text-gray-100"
+      - admins_only do
+        %p.hover.text-gray-100= link_to "Admin", admin_root_path
+    %script{:src => "javascript/script.js"}
+-# %nav.bg-slate-800
+-#   .mx-auto.max-w-7xl.px-4.sm.px-6.lg.px-8
+-#     .flex.h-16.items-center.justify-between
+-#       = image_tag("logos/ccname.png", width: "150px")
+-#       .flex.items-center
+-#         .flex-shrink-0
+-#           = link_to "Home", root_path, class:"text-sm p-3 font-medium text-gray-200 transition-colors duration-300 cursor-pointer transform hover:text-blue-400"
+-#           = link_to "Surveys", surveys_path, class:"text-sm p-3 font-medium text-gray-200 transition-colors duration-300 cursor-pointer transform hover:text-blue-400"
+-#           = link_to "Enrollments", enrollments_path, class:"text-sm p-3 font-medium text-gray-200 transition-colors duration-300 cursor-pointer transform hover:text-blue-400"
+-#       .flex-items-center
+-#         .flex-shrink-0
+-#           = link_to "My Profile", profiles_path, class:"text-sm p-3 font-medium text-gray-200 transition-colors duration-300 cursor-pointer transform hover:text-blue-400"
+-#           - if user_signed_in?
+-#             = link_to current_user.email, edit_user_registration_path, class:"text-sm p-3 font-medium text-gray-200 transition-colors duration-300 cursor-pointer transform hover:text-blue-400"
+-#           = login_helper "text-sm p-3 font-medium text-gray-200 transition-colors duration-300 cursor-pointer transform hover:text-blue-400"
+-#           - admins_only do
+-#             = link_to "Admin", admin_root_path, class:"text-sm p-3 font-medium text-gray-200 transition-colors duration-300 cursor-pointer transform hover:text-blue-400"
 
 
