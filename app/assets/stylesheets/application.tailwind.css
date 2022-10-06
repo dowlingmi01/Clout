@@ -3,10 +3,14 @@
 @tailwind utilities;
 
 body {
-    background-image: url('../img/bg-tablet-pattern.svg');
+    background-image: url('../images/bg-tablet-pattern.svg');
     background-repeat: no-repeat;
     background-size: 800px;
     background-position: 90% -25%;
+}
+
+#hero {
+    background-image: url('../images/bg-stacked-waves.svg');
 }
 
 #cta {
@@ -20,8 +24,8 @@ body {
         background-size: 500px;
     }
 
-    #cta {
-        background-image: url('../img/bg-simplify-section-mobile.svg');
+#cta {
+      background-image: url('../img/bg-simplify-section-mobile.svg');
     }
 }
 

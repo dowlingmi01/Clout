@@ -5,7 +5,8 @@ module.exports = {
     './public/*.html',
     './app/helpers/**/*.rb',
     './app/javascript/**/*.js',
-    './app/views/**/*.{erb,haml,html,slim}'
+    './app/views/**/*.{erb,haml,html,slim}',
+    '.public/index.html.haml'
   ],
   theme: {
     screens: {
@@ -30,6 +31,10 @@ module.exports = {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
+
+      backgroundImage: {
+        'hero': "url('bg-tablet-pattern.svg')",
+      }
     },
   },
   plugins: [
