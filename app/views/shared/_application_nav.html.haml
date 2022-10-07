@@ -12,12 +12,12 @@
       %p.hover.text-gray-100= link_to "Enrollments", enrollments_path
       %p.hover.text-gray-100= link_to "My Profile", profiles_path
       - if user_signed_in?
-        %p.hover.text-gray-100= link_to current_user.email, edit_user_registration_path
+        %p.hover.text-gray-100= link_to current_user.email, edit_user_registration_path 
         = login_helper "text-gray-100"
       - admins_only do
         %p.hover.text-gray-100= link_to "Admin", admin_root_path
     / Button
-    %a.hidden.p-3.px-6.pt-2.text-white.bg-brightRed.rounded-full.baseline.hover:bg-brightRedLight.md:block{:href => "#"} Get Started
+    %a.hidden.p-3.px-6.pt-2.text-white.bg-brightGreen.rounded-full.baseline.hover:bg-brightGreenLight.md:block{:href => "#"} Get Started
     / Hamburger Icon
     %button#menu-btn.block.hamburger.md:hidden.focus:outline-none
       %span.hamburger-top

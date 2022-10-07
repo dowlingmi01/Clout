@@ -22,19 +22,20 @@
         %li=link_to category.name, category_path(category)
       %h1.text-2xl.text-center.text-indigo-500.font-bold= "#{@category.name} Surveys"
       = link_to "Edit", edit_admin_category_path(@category), class: "text-indigo-500 underline", :type => "button" if current_user.admin
-
-- @category_surveys.each do |survey|
-  .p-6.m-4.max-w-lg.mx-auto.bg-white.rounded-xl.shadow-xl.flex.items-center.space-x-10
-    .shrink-0
-      %img.w-full{:alt => "Category", :src => "https://picsum.photos/100"}/
-      .py-3.px-6.text-gray-600.text-lg= " #{time_ago_in_words(survey.created_at)} ago"
-    %div
-      .px-2.pt-1.pb-2
-      %p.text-2xl.font-bold= survey.survey_name
-      %p.text-sm.text-indigo-600.font-bold.mb-4.mt-0= "Location: #{survey.location}"
-      .pt-0.pb-0
-      %p.inline-block.rounded-full.px-3.py-1.text-md.font-semibold.text-gray-700.mr-2.mb-2.cursor-default= "Start Date: #{time_format(survey.start_date)}"
-      %p.inline-block.rounded-full.px-3.py-1.text-md.font-semibold.text-gray-700.mr-2.mb-2.cursor-default= "Organized by: #{survey.organizer.full_name}"
-      .px-6.pt-4.pb-2
-      %button{:class => "bg-gradient-to-r from-green-400 to-blue-500 hover:from-blue-700 hover:to-green-700 text-white font-bold py-2 px-4 rounded-full"}= link_to 'Show Survey', survey_path(survey)
+.p-10.grid.grid-cols-1.sm.grid-cols-1.md.grid-cols-3.lg.grid-cols-3.xl.grid-cols-3.gap-5
+  - @category_surveys.each do |survey|
+    = render survey
+  -# .p-6.m-4.max-w-lg.mx-auto.bg-white.rounded-xl.shadow-xl.flex.items-center.space-x-10
+  -#   .shrink-0
+  -#     %img.w-full{:alt => "Category", :src => "https://picsum.photos/100"}/
+  -#     .py-3.px-6.text-gray-600.text-lg= " #{time_ago_in_words(survey.created_at)} ago"
+  -#   %div
+  -#     .px-2.pt-1.pb-2
+  -#     %p.text-2xl.font-bold= survey.survey_name
+  -#     %p.text-sm.text-indigo-600.font-bold.mb-4.mt-0= "Location: #{survey.location}"
+  -#     .pt-0.pb-0
+  -#     %p.inline-block.rounded-full.px-3.py-1.text-md.font-semibold.text-gray-700.mr-2.mb-2.cursor-default= "Start Date: #{time_format(survey.start_date)}"
+  -#     %p.inline-block.rounded-full.px-3.py-1.text-md.font-semibold.text-gray-700.mr-2.mb-2.cursor-default= "Organized by: #{survey.organizer.full_name}"
+  -#     .px-6.pt-4.pb-2
+  -#     %button{:class => "bg-gradient-to-r from-green-400 to-blue-500 hover:from-blue-700 hover:to-green-700 text-white font-bold py-2 px-4 rounded-full"}= link_to 'Show Survey', survey_path(survey)
 

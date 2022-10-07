@@ -22,9 +22,9 @@
     / List container
     .flex.justify-around.space-x-32
       .flex.flex-col.space-y-3.text-white
-        %a.hover:text-brightRed{:href => "#"} Home
-        %a.hover:text-brightRed{:href => "#"} Surveys
-        %a.hover:text-brightRed{:href => "#"} Enrollments
+        %p.hover.text-gray-100= link_to "Home", root_path
+        %p.hover.text-gray-100= link_to "Survey", surveys_path
+        %p.hover.text-gray-100= link_to "Enrollments", enrollments_path
       .flex.flex-col.space-y-3.text-white
         %a.hover:text-brightRed{:href => "#"} Privacy Policy
         %a.hover:text-brightRed{:href => "#"} Terms & Conditions
@@ -33,7 +33,7 @@
       %form
         .flex-space-x-3
           %input.flex-1.px-4.rounded-full.focus:outline-none{:placeholder => "Subscribe", :type => "text"}/
-          %button.px-6.py-2.text-white.rounded-full.bg-brightRed.hover:bg-brightRedLight.focus:outline-none
+          %button.px-6.py-2.text-white.rounded-full.bg-brightGreen.hover:bg-brightGreenLight.focus:outline-none
             Go
       .hidden.text-white.py-6.md:block
         %p= @copyright

@@ -7,15 +7,17 @@
         A better way to take surveys
       %p.max-w-sm.text-center.text-darkGrayishBlue.md:text-left
         CloutCloud is the "anti-panel" that compensates micro-influencers for both their opinions and influence.
-      .flex.justify-center.md:justify-start
-        %button.p-3.px-6.pt-2.text-white.bg-brightRed.rounded-full.baseline.hover.bg-brightRedLight= link_to 'Sign Up', new_user_registration_path
-    / Image
-    %div{:class => "bg-[url('stacked-waves.svg')]"}
+      - if current_user.is_a?(GuestUser)
+        .flex.justify-center.md:justify-start
+          %button.p-3.px-6.pt-2.text-white.bg-brightGreen.rounded-full.baseline.hover.bg-brightGreenLight= link_to 'Sign Up', new_user_registration_path
+    %div
+      / Image
+      = image_tag("team-solve-problem.jpg", width: "950px")
 / Features Section
 %section#feature
   / Flex container
   .container.flex.flex-col.px-4.mx-auto.mt-10.space-y-12.med:space-y-0.md:flex-row
-    .flex.flex-col.space-y-12{:class => "md:w-1/2"}
+    .flex.flex-col.space-y-12{:class => "md:w-3/4"}
       / What's Different
       %h2.max-w-md.text-4xl.font-bold.text-center.md:text-left
         What's different about CloutCloud?
@@ -23,12 +25,12 @@
         CloutCloud flips the model of traditional consumer panels by giving the lion's share of compensation to survey participants and rewards them even when they don't qualify for surveys.
     %div
       / Numbered List
-      .flex.flex-col.space-y-8{:class => "md:w-1/2"}
+      .flex.flex-col.space-y-8{:class => "md:w-2/3"}
         / List item 1
         .flex.flex-col.space-y-3.md:space-y-0.md:space-x-6.md:flex-row
-          .rounded-l-full.bg-brightRedSupLight.md:bg-transparent
+          .rounded-l-full.bg-brightGreenLight.md:bg-transparent
             .flex.items-center.space-x-2
-              .px-4.py-2.text-white.rounded-full.md:py-1.bg-brightRed
+              .px-4.py-2.text-white.rounded-full.md:py-1.bg-brightGreen
                 01
               %h3.text-base.font-bold.md:mb-4.md:hidden
                 Earn More for Your Opinion
@@ -38,21 +40,21 @@
             %p.text-darkGrayishBlue
               Unlike typical consumer research panels, that reap 80-90% of panelist fees, CloutCloud flips the model and pays the bulk to participants.
         .flex.flex-col.space-y-3.md:space-y-0.md:space-x-6.md:flex-row
-          .rounded-l-full.bg-brightRedSupLight.md:bg-transparent
+          .rounded-l-full.bg-brightGreenLight.md:bg-transparent
             .flex.items-center.space-x-2
-              .px-4.py-2.text-white.rounded-full.md:py-1.bg-brightRed
+              .px-4.py-2.text-white.rounded-full.md:py-1.bg-brightGreen
                 02
               %h3.text-base.font-bold.md:mb-4.md:hidden
-                Share to Earn As Well
+                Share to Earn
           %div
             %h3.hidden.mb-4.text-lg.font-bold.md:block
-              Share to Earn As Well
+              Share to Earn
             %p.text-darkGrayishBlue
               Leverage your influence by referring others to take surveys. It's win-win as they get paid to complete the survey and you get paid for referring them.
         .flex.flex-col.space-y-3.md:space-y-0.md:space-x-6.md:flex-row
-          .rounded-l-full.bg-brightRedSupLight.md:bg-transparent
+          .rounded-l-full.bg-brightGreenLight.md:bg-transparent
             .flex.items-center.space-x-2
-              .px-4.py-2.text-white.rounded-full.md:py-1.bg-brightRed
+              .px-4.py-2.text-white.rounded-full.md:py-1.bg-brightGreen
                 03
               %h3.text-base.font-bold.md:mb-4.md:hidden
                 Make the Most of Your Time
@@ -85,12 +87,12 @@
 -#     .my-16
 -#       %a.p-3.px-6.pt-2.text-white.bg-brightRed.rounded-full.baseline.hover:bg-brightRedLight{:href => "#"} Get Started
 / CTA Section
-%section#cta.bg-brightRed
+%section#cta.bg-brightGreen
   / Flex Container
   .container.flex.flex-col.items-center.justify-between.mt-10.px-6.py-24.mx-auto.space-y-12.md:py-12.md:flex-row.md:space-y-0
     / Heading
     %h2.text-5xl.font-bold.leading-tight.text-center.text-white.md:text-4xl.md:max-w-xl.md:text-left
       Make Your Opinion Count
-    .my-16
-      %a.p-3.px-6.pt-2.text-brightRed.bg-white.rounded-full.shadow-2xl.baseline.hover:bg-gray-500{:href => "#"} Get Started
+    -# .my-16
+    -#   %a.p-3.px-6.pt-2.text-brightRed.bg-white.rounded-full.shadow-2xl.baseline.hover:bg-gray-500{:href => "#"} Get Started
 
