@@ -1,8 +1,10 @@
-.flex.flex-col.relative.block.rounded-sm.border-t-4.border-slate-200.p-8.pb-24.shadow-xl.md:flex-row
-  .h5.text-4xl.text-brightGreen.font-bold= "#{number_to_currency(survey.cpi)}"
-  .absolute.right-4.top-4= image_tag("low-poly-grid", width: "100px")
-  .absolute.left-8.bottom-2.text-md.font-semibold.text-gray-700.mr2.mb-2= "Duration: #{survey.loi} minutes"
-  .absolute.right-4.bottom-4.rounded-full.bg-slate-500.px-3.py-1.5.text-xs.text-white.font-medium= survey.category.name
+=link_to survey_path(survey) do
+  .flex.flex-col.relative.block.rounded-sm.border-t-4.border-slate-200.p-8.pb-24.shadow-xl.md:flex-row
+    .h5.text-4xl.text-brightGreen.font-bold= "#{number_to_currency(survey.cpi)}"
+    .absolute.right-4.top-4= image_tag("low-poly-grid", width: "100px")
+    .absolute.left-8.bottom-2.text-md.font-semibold.text-gray-700.mr2.mb-2= "Duration: #{survey.loi} minutes"
+    .absolute.right-4.bottom-4.rounded-full.bg-slate-500.px-3.py-1.5.text-xs.text-white.font-medium= survey.category.name
+
 
 
 -# .p-6.m-4.max-w-md.mx-auto.bg-white.rounded-xl.shadow-xl.flex.items-center.space-x-10

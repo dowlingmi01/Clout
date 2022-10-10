@@ -1,7 +1,7 @@
 %p{:style => "color: green ", class: "text-center"}= notice
 %h1.text-3xl.font-bold.mb-4.mt-5.text-center Surveys
 .container.flex.flex-col.px-4.mx-auto.mt-10.space-y-12.md:flex-row
-.p-10.grid.grid-cols-1.sm.grid-cols-1.md.grid-cols-3.lg.grid-cols-3.xl.grid-cols-3.gap-5
+.p-10.grid.grid-cols-1.sm.grid-cols-1.md.grid-cols-4.lg.grid-cols-4.xl.grid-cols-4.gap-5
   - @surveys.each do |survey|
     = render survey
 .text-center
