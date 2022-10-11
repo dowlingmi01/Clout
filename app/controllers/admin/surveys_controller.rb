@@ -4,13 +4,9 @@ class Admin::SurveysController < Admin::ApplicationController
 
 
 	def index
-		@surveys = Survey.all
+		@surveys = Survey.order(:id)
 	end
-
-	def new
-		@survey = Survey.new
-	end
-
+	
   def create
     @survey = Survey.new(survey_params)
 

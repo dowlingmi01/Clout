@@ -8,8 +8,9 @@
     / Menu Items
     .hidden.md:flex.space-x-6
       %p.hover.text-gray-100= link_to "Home", root_path
-      %p.hover.text-gray-100= link_to "Survey", surveys_path
+      %p.hover.text-gray-100= link_to "Surveys", surveys_path
       %p.hover.text-gray-100= link_to "Enrollments", enrollments_path
+      %p.hover.text-gray-100= link_to "My Rewards", rewards_path
       %p.hover.text-gray-100= link_to "My Profile", profiles_path
       - if user_signed_in?
         %p.hover.text-gray-100= link_to current_user.email, edit_user_registration_path 

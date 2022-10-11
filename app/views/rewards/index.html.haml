@@ -1,0 +1,72 @@
+%div
+  %h1.text-2xl.text-gray-900.text-center.font-bold My Rewards
+  %dl.mt-5.grid.grid-cols-1.gap-5.sm:grid-cols-3
+    .overflow-hidden.rounded-lg.bg-white.px-4.py-5.shadow.md:p-6
+      %dt.truncate.text-sm.font-medium.text-gray-500 Rewards Cash earned
+      %dd.mt-1.text-3xl.font-semibold.tracking-tight.text-gray-900= number_to_currency(current_user.total_rewards_cash)
+      %button.accordion-button.collapsed.relative.flex.items-center.w-full.py-4.text-base.text-gray-800.text-left.bg-white.border-0.rounded-none.transition.focus:outline-none{"aria-controls" => "collapseOne5", "aria-expanded" => "false", "data-bs-target" => "#collapseOne5", "data-bs-toggle" => "collapse", :type => "button"}
+        More Info
+      #collapseOne5.accordion-collapse.collapse{"aria-labelledby" => "headingOne5"}
+        .accordion-body.py-4.px-5
+        - @rewards_cashes.each do |rewards_cash|
+          .flex
+            .text-lime-500.font-bold.px-1= "+ #{number_to_currency(rewards_cash.rewards_cash_amount)}"
+            .text-zinc-900.px-1 from
+            .text-slate-800.font-bold.underline.px-1=link_to rewards_cash.survey.survey_name, survey_path(rewards_cash.survey.id)
+            .text-gray-400.font-bold.px-1.text-sm= rewards_cash.created_at.strftime('%b %e at %l:%M %p')
+    .overflow-hidden.rounded-lg.bg-white.px-1.py-5.shadow.md:p-6
+      %dt.truncate.text-sm.font-medium.text-gray-500 Rewards Cash pending
+      / Temporary
+      %dd.mt-1.text-3xl.font-semibold.tracking-tight.text-gray-900 0$
+      %button.accordion-button.collapsed.relative.flex.items-center.w-full.py-4.text-base.text-gray-800.text-left.bg-white.border-0.rounded-none.transition.focus:outline-none{"aria-controls" => "collapseTwo5", "aria-expanded" => "false", "data-bs-target" => "#collapseTwo5", "data-bs-toggle" => "collapse", :type => "button"}
+        More Info
+      #collapseTwo5.accordion-collapse.collapse{"aria-labelledby" => "headingTwo5"}
+        .accordion-body.py-4.px-5
+          %p Pending Rewards Cash will go here
+
+    .overflow-hidden.rounded-lg.bg-white.px-4.py-5.shadow.md:p-6
+      %dt.truncate.text-sm.font-medium.text-gray-500 Experience earned
+      %dd.mt-1.text-3xl.font-semibold.tracking-tight.text-gray-900= "#{current_user.total_experience}xp"
+      %button.accordion-button.collapsed.relative.flex.items-center.w-full.py-4.text-base.text-gray-800.text-left.bg-white.border-0.rounded-none.transition.focus:outline-none{"aria-controls" => "collapseThree5", "aria-expanded" => "false", "data-bs-target" => "#collapseThree5", "data-bs-toggle" => "collapse", :type => "button"}
+        More Info
+      #collapseThree5.accordion-collapse.collapse{"aria-labelledby" => "headingThree5"}
+        .accordion-body.py-4.px-5
+        - @experiences.each do |experience|
+          .flex
+            .text-teal-500.font-bold.px-1= "#{experience.experience_amount}xp" 
+            .text-zinc-900.px-1 from
+            .text-slate-800.font-bold.underline.px-1= link_to experience.survey.survey_name, survey_path(experience.survey.id)
+            .text-gray-400.font-bold.px-1.text-sm= experience.created_at.strftime('%b %e at %l:%M %p')
+
+    .overflow-hidden.rounded-lg.bg-white.px-4.py-5.shadow.md:p-6
+      %dt.truncate.text-sm.font-medium.text-gray-500 Completed Surveys
+      %dd.mt-1.text-3xl.font-semibold.tracking-tight.text-gray-900= current_user.completed_surveys.count
+      %button.accordion-button.collapsed.relative.flex.items-center.w-full.py-4.text-base.text-gray-800.text-left.bg-white.border-0.rounded-none.transition.focus:outline-none{"aria-controls" => "collapseFour5", "aria-expanded" => "false", "data-bs-target" => "#collapseFour5", "data-bs-toggle" => "collapse", :type => "button"}
+        More Info
+      #collapseFour5.accordion-collapse.collapse{"aria-labelledby" => "headingFour5"}
+        .accordion-body.py-4.px-5
+        - @completed_surveys.each do |completed_survey|
+          .flex
+            .text-slate-800.font-bold.underline.px-1= link_to completed_survey.survey_name, survey_path(completed_survey.id)
+            .text-gray-400.font-bold.px-1.text-sm= completed_survey.created_at.strftime('%b %e at %l:%M %p')
+
+    .overflow-hidden.rounded-lg.bg-white.px-4.py-5.shadow.md:p-6
+      %dt.truncate.text-sm.font-medium.text-gray-500 Unqualified Surveys
+      / Temporary
+      %dd.mt-1.text-3xl.font-semibold.tracking-tight.text-gray-900 0
+      %button.accordion-button.collapsed.relative.flex.items-center.w-full.py-4.text-base.text-gray-800.text-left.bg-white.border-0.rounded-none.transition.focus:outline-none{"aria-controls" => "collapseFive5", "aria-expanded" => "false", "data-bs-target" => "#collapseFive5", "data-bs-toggle" => "collapse", :type => "button"}
+        More Info
+      #collapseFive5.accordion-collapse.collapse{"aria-labelledby" => "headingFive5"}
+        .accordion-body.py-4.px-5
+          %p Unqualified Surveys will go here
+
+    .overflow-hidden.rounded-lg.bg-white.px-4.py-5.shadow.md:p-6
+      %dt.truncate.text-sm.font-medium.text-gray-500 Uncompleted Surveys
+      %dd.mt-1.text-3xl.font-semibold.tracking-tight.text-gray-900 0
+      %button.accordion-button.collapsed.relative.flex.items-center.w-full.py-4.text-base.text-gray-800.text-left.bg-white.border-0.rounded-none.transition.focus:outline-none{"aria-controls" => "collapseSix5", "aria-expanded" => "false", "data-bs-target" => "#collapseSix5", "data-bs-toggle" => "collapse", :type => "button"}
+        More Info
+      #collapseSix5.accordion-collapse.collapse{"aria-labelledby" => "headingSix5"}
+        .accordion-body.py-4.px-5
+          %p Uncompleted Surveys will go here
+
+

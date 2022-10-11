@@ -1,12 +1,6 @@
 - if @profile
   .text-center
     %p#notice= notice
-    %p CloutCash:
-    %strong=  current_user.total_rewards_cash
-    %p CloutXP: 
-    %strong= current_user.total_experience
-    %p Completed Surveys:
-    %strong= @surveys.count
     %p
       %b User:
       = @profile.user.full_name
@@ -27,4 +21,4 @@
 
 - else
 .text-center
-  = link_to 'Create Profile', new_profile_path 
+  = link_to 'Create Profile', new_profile_path unless current_user.profile
