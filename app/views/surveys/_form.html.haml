@@ -1,20 +1,22 @@
 .mt-8.sm:mx-auto.sm:w-full.sm:max-w-md
   .bg-white.py-8.px-4.shadow.sm:rounded-lg.sm:px-10
-    = simple_form_for([:admin, survey]) do |f|
+    = simple_form_for([:admin, @survey]) do |f|
+      = f.error_notification
+      = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
       .my-2
-        = f.input :survey_name,required: true, class: 'block text-sm font-medium text-gray-700'
+        = f.input :survey_name, required: true, class: 'block text-sm font-medium text-gray-700', error: 'Please enter a name'
         .mt-1
-        = f.text_area :description, required: true, class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+        = f.input :description, required: true, class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm", error: 'Please enter a description' 
       .my-2
-        = f.input :start_date,required: true, class: 'block text-sm font-medium text-gray-700'
+        = f.input :start_date, required: true, class: 'block text-sm font-medium text-gray-700', error: 'Please select a start date'
       .my-2
-        = f.input :end_date,required: true, class: 'block text-sm font-medium text-gray-700'
+        = f.input :end_date, required: true, class: 'block text-sm font-medium text-gray-700', error: 'Please select an end date'
       .my-2
-        = f.input :category_id,required: true, collection: Category.all, label: "Select Category", prompt: true, class: 'block text-sm font-medium text-gray-700'
+        = f.input :category_id, required: true, collection: Category.all, label: "Select Category", prompt: true, class: 'block text-sm font-medium text-gray-700', error: 'Please select a category'
       .my-2
-        = f.input :cpi, input_html: { min: '0', step: 'any'},required: true, class: 'block text-sm font-medium text-gray-700'
+        = f.input :cpi, input_html: { min: '0', step: 'any'}, required: true, class: 'block text-sm font-medium text-gray-700', error: 'Please enter cpi'
       .my-2
-        = f.input :loi, input_html: { min: '0', step: 'any'},required: true, class: 'block text-sm font-medium text-gray-700'
+        = f.input :loi, input_html: { min: '0', step: 'any'}, required: true, class: 'block text-sm font-medium text-gray-700', error: 'Please enter loi'
 
 
       %p Location

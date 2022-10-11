@@ -7,7 +7,6 @@
     @categories = Category.order(:name)
     @enrollments = Enrollment.all
     authorize @surveys, :index?
-    @page_title = "Surveys"
   end
 
   def show
@@ -23,21 +22,6 @@
 
   def edit
     authorize @survey, :edit?
-  end
-
-  def create
-    @survey = Survey.new(survey_params)
-
-    authorize @survey, :create?
-    @survey.organizer = current_user
-
-    respond_to do |format|
-      if @survey.save
-        format.html { redirect_to survey_url(@survey), notice: "Survey was successfully created." }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-      end
-    end
   end
 
   def update

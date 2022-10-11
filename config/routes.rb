@@ -11,10 +11,11 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   resources :categories, only: [:show]
   resources :profiles, path: 'my-profile', except: :show
+  resources :rewards, path: 'my-rewards', only: [:index]
   resources :enrollments
   root "home#index"
   resources :surveys do
-    resources :completions, only: [:create]
+    resources :completions, only: [:create]     
     resources :enrollments, only: [:new, :create]
   end
 end
