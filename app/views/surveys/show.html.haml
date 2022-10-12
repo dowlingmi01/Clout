@@ -12,10 +12,10 @@
             %p.text-sm.font-medium.text-indigo-600
               %p.text-2xl.font-semibold.text-gray-900.text-center= @survey.survey_name
               %p.text-indigo-600.font-bold.text-sm.mb-4.mt-0.text-center= @survey.category.name
-              %p.py-1.text-md.font-semibold.text-gray-700= "Survey Reward: #{number_to_currency(@survey.cpi)}"
-              %p.py-1.text-md.font-semibold.text-gray-700= "CloutCash: #{number_to_currency(@survey.cpi/2)}"
-              %p.py-1.text-md.font-semibold.text-gray-700 CloutXP: 10xp
-              %p.py-1.text-md.font-semibold.text-gray-700= "Duration: #{@survey.loi}m"
+              %p.py-1.text-md.font-semibold.text-gray-700= "Survey Reward: #{number_to_currency(@survey.survey_reward)}"
+              %p.py-1.text-md.font-semibold.text-gray-700= "CloutCash: #{number_to_currency(@survey.rewards_cash)}"
+              %p.py-1.text-md.font-semibold.text-gray-700= "CloutXP: #{@survey.experience}xp"
+              %p.py-1.text-md.font-semibold.text-gray-700= "Estimated Duration: #{@survey.loi} minutes"
               %p.text-gray-700.font-bold.text-md.mb-4.mt-0= "Description: #{@survey.description}"
               %p.text-gray-700.font-bold.text-md.mb-4.mt-0= "Start Date: #{(@survey.start_date).strftime "%d-%m-%Y"}"
               %p.text-gray-700.font-bold.text-md.mb-4.mt-0= "End Date: #{(@survey.end_date).strftime "%d-%m-%Y"}"
@@ -26,9 +26,9 @@
                 .text-gray-600.text-lg.border-t.py-3= " #{time_ago_in_words(@survey.created_at)} ago"
 
 .text-center
-  = link_to "Edit this survey", edit_survey_path(@survey)
-  |
+  = link_to "Edit this survey", edit_survey_path(@survey) if current_user.admin
+  
   = link_to "Back to surveys", surveys_path
   |
   = link_to "Enroll Survey", new_survey_enrollment_path(@survey), method: :post, class: "new"
-  = button_to "Destroy this survey", @survey, method: :delete
+  = button_to "Destroy this survey", @survey, method: :delete if current_user.admin
