@@ -1,8 +1,8 @@
 %div
   %h1.text-2xl.text-gray-900.text-center.font-bold My Rewards
-  %dl.mt-5.grid.grid-cols-1.gap-5.sm:grid-cols-3
+  %dl.mt-5.grid.grid-cols-1.gap-5.sm:grid-cols-4
     .overflow-hidden.rounded-lg.bg-white.px-4.py-5.shadow.md:p-6
-      %dt.truncate.text-sm.font-medium.text-gray-500 Rewards Cash earned
+      %dt.truncate.text-sm.font-medium.text-gray-500 CloutCash earned
       %dd.mt-1.text-3xl.font-semibold.tracking-tight.text-gray-900= number_to_currency(current_user.total_rewards_cash)
       %button.accordion-button.collapsed.relative.flex.items-center.w-full.py-4.text-base.text-gray-800.text-left.bg-white.border-0.rounded-none.transition.focus:outline-none{"aria-controls" => "collapseOne5", "aria-expanded" => "false", "data-bs-target" => "#collapseOne5", "data-bs-toggle" => "collapse", :type => "button"}
         More Info
@@ -14,15 +14,16 @@
             .text-zinc-900.px-1 from
             .text-slate-800.font-bold.underline.px-1=link_to rewards_cash.survey.survey_name, survey_path(rewards_cash.survey.id)
             .text-gray-400.font-bold.px-1.text-sm= rewards_cash.created_at.strftime('%b %e at %l:%M %p')
+
     .overflow-hidden.rounded-lg.bg-white.px-1.py-5.shadow.md:p-6
-      %dt.truncate.text-sm.font-medium.text-gray-500 Rewards Cash pending
+      %dt.truncate.text-sm.font-medium.text-gray-500 CloutCash pending
       / Temporary
       %dd.mt-1.text-3xl.font-semibold.tracking-tight.text-gray-900 0$
       %button.accordion-button.collapsed.relative.flex.items-center.w-full.py-4.text-base.text-gray-800.text-left.bg-white.border-0.rounded-none.transition.focus:outline-none{"aria-controls" => "collapseTwo5", "aria-expanded" => "false", "data-bs-target" => "#collapseTwo5", "data-bs-toggle" => "collapse", :type => "button"}
         More Info
       #collapseTwo5.accordion-collapse.collapse{"aria-labelledby" => "headingTwo5"}
         .accordion-body.py-4.px-5
-          %p Pending Rewards Cash will go here
+          %p Pending CloutCash will go here
 
     .overflow-hidden.rounded-lg.bg-white.px-4.py-5.shadow.md:p-6
       %dt.truncate.text-sm.font-medium.text-gray-500 Experience earned
@@ -37,6 +38,20 @@
             .text-zinc-900.px-1 from
             .text-slate-800.font-bold.underline.px-1= link_to experience.survey.survey_name, survey_path(experience.survey.id)
             .text-gray-400.font-bold.px-1.text-sm= experience.created_at.strftime('%b %e at %l:%M %p')
+
+    .overflow-hidden.rounded-lg.bg-white.px-4.py-5.shadow.md:p-6
+      %dt.truncate.text-sm.font-medium.text-gray-500 CloutCurrency
+      %dd.mt-1.text-3xl.font-semibold.tracking-tight.text-gray-900= number_to_currency(current_user.total_survey_reward)
+      %button.accordion-button.collapsed.relative.flex.items-center.w-full.py-4.text-base.text-gray-800.text-left.bg-white.border-0.rounded-none.transition.focus:outline-none{"aria-controls" => "collapseSeven5", "aria-expanded" => "false", "data-bs-target" => "#collapseSeven5", "data-bs-toggle" => "collapse", :type => "button"}
+        More Info
+      #collapseSeven5.accordion-collapse.collapse{"aria-labelledby" => "headingSeven5"}
+        .accordion-body.py-4.px-5
+        - @survey_rewards.each do |survey_reward|
+          .flex
+            .text-lime-500.font-bold.px-1= "+ #{number_to_currency(survey_reward.survey_reward_amount)}"
+            .text-zinc-900.px-1 from
+            .text-slate-800.font-bold.underline.px-1=link_to survey_reward.survey.survey_name, survey_path(survey_reward.survey.id)
+            .text-gray-400.font-bold.px-1.text-sm= survey_reward.created_at.strftime('%b %e at %l:%M %p')
 
     .overflow-hidden.rounded-lg.bg-white.px-4.py-5.shadow.md:p-6
       %dt.truncate.text-sm.font-medium.text-gray-500 Completed Surveys

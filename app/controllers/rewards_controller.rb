@@ -7,6 +7,7 @@ class RewardsController < ApplicationController
     @completed_surveys = current_user.completed_surveys
     @rewards_cashes = current_user.rewards_cashes.order(created_at: :desc)
     @experiences = current_user.experiences.order(created_at: :desc)
+    @survey_rewards = current_user.survey_rewards.order(created_at: :desc)
   end
 
   private

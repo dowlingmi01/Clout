@@ -5,7 +5,7 @@
   - @surveys.each do |survey|
     = render survey
 .text-center
-  = link_to "New survey", new_survey_path
+  = link_to "New survey", new_survey_path if current_user.admin
 
 
 

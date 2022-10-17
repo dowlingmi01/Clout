@@ -1,10 +1,12 @@
 .mt-8.sm:mx-auto.sm:w-full.sm:max-w-md
   .bg-white.py-8.px-4.shadow.sm:rounded-lg.sm:px-10
     = simple_form_for([:admin, @survey]) do |f|
+      = f.error_notification
+      = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
       .my-2
         = f.input :survey_name, required: true, class: 'block text-sm font-medium text-gray-700'
         .mt-1
-        = f.input :description, required: true, class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+        = f.input :description, required: true, class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" 
       .my-2
         = f.input :start_date, required: true, class: 'block text-sm font-medium text-gray-700'
       .my-2
@@ -13,9 +15,11 @@
         = f.input :category_id, required: true, collection: Category.all, label: "Select Category", prompt: true, class: 'block text-sm font-medium text-gray-700'
       .my-2
         = f.input :cpi, input_html: { min: '0', step: 'any'}, required: true, class: 'block text-sm font-medium text-gray-700'
-      .my-2
         = f.input :loi, input_html: { min: '0', step: 'any'}, required: true, class: 'block text-sm font-medium text-gray-700'
-
+        = f.input :experience, required: true, class: 'block text-sm font-medium text-gray-700'
+        = f.input :rewards_cash, required: true, label: 'CloutCash', class: 'block text-sm font-medium text-gray-700'
+      .my-2
+        = f.input :survey_reward, required: true, class: 'block text-sm font-medium text-gray-700'
 
       %p Location
       = f.country_select :location

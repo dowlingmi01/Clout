@@ -64,7 +64,10 @@
                                     :cpi,
                                     :loi,
                                     :survey_id,
-                                    :category_id
+                                    :category_id,
+                                    :experience,
+                                    :rewards_cash,
+                                    :survey_reward
                                     )
     end
 end
