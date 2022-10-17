@@ -3,7 +3,8 @@ class SurveyRewards < ActiveRecord::Migration[7.0]
       create_table :survey_rewards do |t|
       t.belongs_to :survey
       t.belongs_to :user
-      t.decimal :survey_reward_amount
+      t.decimal :rewards_cashes
+      t.integer :experiences
       t.datetime :rewarded_at
 
       t.timestamps
