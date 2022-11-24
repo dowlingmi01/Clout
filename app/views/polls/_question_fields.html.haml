@@ -1,0 +1,12 @@
+.nested-fields
+  .form-group
+    = f.input :topic, class: 'form-control', required: true
+    = f.input :option_type, collection: Question.select_options_for_type, prompt: "Select type", class: 'block text-sm font-medium text-gray-700'
+    = f.input :comment, class: 'form-control', required: true
+  .text-center.text-indigo-500 Options
+  .panel-body
+    = f.fields_for :vote_options do |options_form|
+      = render 'vote_option_fields', f: options_form
+  .links
+    .text-lime-700.underline= link_to_add_association 'add option', f, :vote_options
+    .text-red-900.underline= link_to_remove_association "Remove Question", f

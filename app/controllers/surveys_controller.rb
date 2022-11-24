@@ -1,17 +1,20 @@
   class SurveysController < ApplicationController
   before_action :set_survey, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :verify_admin, only: [ :new ]
 
   def index
     @surveys = Survey.order(created_at: :desc)
     @categories = Category.order(:name)
     @enrollments = Enrollment.all
     authorize @surveys, :index?
+    @polls = Poll.all.where.not(status: ['draft', 'closed'] )
+    @admin_polls = Poll.all
   end
 
   def show
     authorize @survey, :show?
-    @completed_survey = current_user.completed_surveys.find_by(id: @survey.id)
+    @completed_survey = current_user.completions.find_by(completion_source_id: @survey.id)
   end
 
   def new
@@ -53,6 +56,12 @@
       flash.alert = "The page you requested does not exist"
       redirect_to surveys_path
 
+    end
+
+    def verify_admin
+      unless current_user.admin?
+        redirect_to surveys_path
+      end
     end
 
     def survey_params

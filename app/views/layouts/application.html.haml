@@ -8,10 +8,11 @@
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload"
-    %script{:src => "https://cdn.tailwindcss.com"}
     %link{:href => "https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css", :rel => "stylesheet"}/
+    = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
     %script{:src => "https://cdn.tailwindcss.com"}
-    = javascript_importmap_tags
+    %script{:src => "https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"}
+    %script{:crossorigin => "anonymous", :src => "https://kit.fontawesome.com/1714409f38.js"}
   %body
     .cover-container.d-flex.h-100.mx-auto.flex-column.bg
       %header.masthead.mb-auto
@@ -20,5 +21,3 @@
           .container-mt-5     
           = yield
           = render "shared/application_footer"
-
-%script{:src => "https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"}

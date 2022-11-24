@@ -1,0 +1,5 @@
+%p{:style => "color: red", class: "text-center"}= notice
+- content_for(:page_header) {"Edit poll"}
+.flex.flex-col-2
+  = render 'form'
+  = render 'sort_form'

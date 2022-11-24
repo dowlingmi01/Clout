@@ -8,7 +8,7 @@ class ProfilesController < ApplicationController
 
   def index
     @profile = current_user.profile
-    @surveys = current_user.completed_surveys
+    @surveys = current_user.completions.where(completion_source_type: 'Survey')
   end
 
   def new

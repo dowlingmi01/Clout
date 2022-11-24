@@ -1,0 +1,14 @@
+.form-group.py-3
+- if option.question.option_type == "single_select"
+  = content_tag(:label) do
+    - unless current_user.voted_for?(option.question)
+      = radio_button_tag 'vote_option[id]', option.id, false
+    = option.title
+  = visualize_votes_for option
+- if option.question.option_type == "multi_select"
+  = content_tag(:label) do
+    - unless current_user.voted_for?(option.question)
+      = check_box_tag 'vote_option_ids[]', option.id, false
+    = option.title
+  = visualize_votes_for option
+
