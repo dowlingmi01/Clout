@@ -14,7 +14,7 @@
 
   def show
     authorize @survey, :show?
-    @completed_survey = current_user.completions.find_by(completion_source_id: @survey.id)
+    @completed_survey =  current_user.completions.where(completion_source_type: "Survey").find_by(completion_source_id: @survey.id)      
   end
 
   def new

@@ -54,8 +54,8 @@
             .text-gray-400.font-bold.px-1.text-sm= survey_reward.created_at.strftime('%b %e at %l:%M %p')
 
     .overflow-hidden.rounded-lg.bg-white.px-4.py-5.shadow.md:p-6
-      %dt.truncate.text-sm.font-medium.text-gray-500 Completed Surveys
-      %dd.mt-1.text-3xl.font-semibold.tracking-tight.text-gray-900 1
+      %dt.truncate.text-sm.font-medium.text-gray-500 Completed Surveys  
+      %dd.mt-1.text-3xl.font-semibold.tracking-tight.text-gray-900= current_user.completions.where(completion_source_type: "Survey").count
       %button.accordion-button.collapsed.relative.flex.items-center.w-full.py-4.text-base.text-gray-800.text-left.bg-white.border-0.rounded-none.transition.focus:outline-none{"aria-controls" => "collapseFour5", "aria-expanded" => "false", "data-bs-target" => "#collapseFour5", "data-bs-toggle" => "collapse", :type => "button"}
         More Info
       #collapseFour5.accordion-collapse.collapse{"aria-labelledby" => "headingFour5"}

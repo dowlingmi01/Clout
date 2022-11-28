@@ -54,10 +54,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_22_170254) do
   end
 
   create_table "polls", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.integer "experience"
     t.decimal "rewards_cash"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "status"
   end
 
