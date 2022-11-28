@@ -1,0 +1,19 @@
+.mt-8.sm:mx-auto.sm:w-full.sm:max-w-md
+  .bg-white.py-8.px-4.shadow.sm:rounded-lg.sm:px-10
+    = simple_form_for([:admin, @poll]) do |f|
+      = f.error_notification
+      = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+      .my-2
+      .links
+      .text-orange-700.underline= link_to_add_association 'Add Question', f, :questions
+      = f.input :experience, required: true, class: 'block text-sm font-medium text-orange-700'
+      = f.input :rewards_cash , required: true, label: 'CloutCash', class: 'block text-sm font-medium text-orange-700'
+      = f.input :status, collection: Poll.statuses.keys, default: 'draft' 
+      .panel-body
+        .text-center.text-indigo-500 Questions
+        = f.fields_for :questions do |questions_form|
+          = render 'question_fields', f: questions_form        
+      %button.w-full.flex.justify-center.mt-4.py-2.px-4.border.border-transparent.rounded-md.shadow-sm.text-sm.font-medium.text-white.bg-blue-600.hover:bg-blue-700.focus:outline-none.focus:ring-2.focus:ring-offset-2.focus:ring-blue-500
+        = f.button :submit
+
+  

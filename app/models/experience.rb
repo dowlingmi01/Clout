@@ -1,4 +1,4 @@
 class Experience < ApplicationRecord
   belongs_to :user
-  belongs_to :survey
+  belongs_to :experience_source, polymorphic: true
 end

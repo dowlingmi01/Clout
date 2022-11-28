@@ -12,12 +12,12 @@
           .flex
             .text-lime-500.font-bold.px-1= "+ #{number_to_currency(rewards_cash.rewards_cash_amount)}"
             .text-zinc-900.px-1 from
-            .text-slate-800.font-bold.underline.px-1=link_to rewards_cash.survey.survey_name, survey_path(rewards_cash.survey.id)
+            .text-slate-800.font-bold.underline.px-1=link_to rewards_cash.rewards_cash_source_type, survey_path(rewards_cash.rewards_cash_source.id)
             .text-gray-400.font-bold.px-1.text-sm= rewards_cash.created_at.strftime('%b %e at %l:%M %p')
 
     .overflow-hidden.rounded-lg.bg-white.px-1.py-5.shadow.md:p-6
       %dt.truncate.text-sm.font-medium.text-gray-500 CloutCash pending
-      / Temporary
+      // Temporary
       %dd.mt-1.text-3xl.font-semibold.tracking-tight.text-gray-900 0$
       %button.accordion-button.collapsed.relative.flex.items-center.w-full.py-4.text-base.text-gray-800.text-left.bg-white.border-0.rounded-none.transition.focus:outline-none{"aria-controls" => "collapseTwo5", "aria-expanded" => "false", "data-bs-target" => "#collapseTwo5", "data-bs-toggle" => "collapse", :type => "button"}
         More Info
@@ -36,7 +36,7 @@
           .flex
             .text-teal-500.font-bold.px-1= "#{experience.experience_amount}xp" 
             .text-zinc-900.px-1 from
-            .text-slate-800.font-bold.underline.px-1= link_to experience.survey.survey_name, survey_path(experience.survey.id)
+            .text-slate-800.font-bold.underline.px-1= link_to experience.experience_source_type, survey_path(experience.experience_source.id)
             .text-gray-400.font-bold.px-1.text-sm= experience.created_at.strftime('%b %e at %l:%M %p')
 
     .overflow-hidden.rounded-lg.bg-white.px-4.py-5.shadow.md:p-6
@@ -50,19 +50,19 @@
           .flex
             .text-lime-500.font-bold.px-1= "+ #{number_to_currency(survey_reward.survey_reward_amount)}"
             .text-zinc-900.px-1 from
-            .text-slate-800.font-bold.underline.px-1=link_to survey_reward.survey.survey_name, survey_path(survey_reward.survey.id)
+            .text-slate-800.font-bold.underline.px-1=link_to survey_reward.survey_reward_source_type, survey_path(survey_reward.survey_reward_source.id)
             .text-gray-400.font-bold.px-1.text-sm= survey_reward.created_at.strftime('%b %e at %l:%M %p')
 
     .overflow-hidden.rounded-lg.bg-white.px-4.py-5.shadow.md:p-6
-      %dt.truncate.text-sm.font-medium.text-gray-500 Completed Surveys
-      %dd.mt-1.text-3xl.font-semibold.tracking-tight.text-gray-900= current_user.completed_surveys.count
+      %dt.truncate.text-sm.font-medium.text-gray-500 Completed Surveys  
+      %dd.mt-1.text-3xl.font-semibold.tracking-tight.text-gray-900= current_user.completions.where(completion_source_type: "Survey").count
       %button.accordion-button.collapsed.relative.flex.items-center.w-full.py-4.text-base.text-gray-800.text-left.bg-white.border-0.rounded-none.transition.focus:outline-none{"aria-controls" => "collapseFour5", "aria-expanded" => "false", "data-bs-target" => "#collapseFour5", "data-bs-toggle" => "collapse", :type => "button"}
         More Info
       #collapseFour5.accordion-collapse.collapse{"aria-labelledby" => "headingFour5"}
         .accordion-body.py-4.px-5
         - @completed_surveys.each do |completed_survey|
           .flex
-            .text-slate-800.font-bold.underline.px-1= link_to completed_survey.survey_name, survey_path(completed_survey.id)
+            .text-slate-800.font-bold.underline.px-1= link_to completed_survey.completion_source_type, survey_path(completed_survey.completion_source.id)
             .text-gray-400.font-bold.px-1.text-sm= completed_survey.created_at.strftime('%b %e at %l:%M %p')
 
     .overflow-hidden.rounded-lg.bg-white.px-4.py-5.shadow.md:p-6
@@ -83,5 +83,17 @@
       #collapseSix5.accordion-collapse.collapse{"aria-labelledby" => "headingSix5"}
         .accordion-body.py-4.px-5
           %p Uncompleted Surveys will go here
+
+    -# .overflow-hidden.rounded-lg.bg-white.px-4.py-5.shadow.md:p-6
+    -#   %dt.truncate.text-sm.font-medium.text-gray-500 Completed Polls
+    -#   %dd.mt-1.text-3xl.font-semibold.tracking-tight.text-gray-900 0
+    -#   %button.accordion-button.collapsed.relative.flex.items-center.w-full.py-4.text-base.text-gray-800.text-left.bg-white.border-0.rounded-none.transition.focus:outline-none{"aria-controls" => "collapseEight5", "aria-expanded" => "false", "data-bs-target" => "#collapseEight5", "data-bs-toggle" => "collapse", :type => "button"}
+    -#     More Info
+    -#   #collapseSix5.accordion-collapse.collapse{"aria-labelledby" => "headingEight5"}
+    -#     .accordion-body.py-4.px-5
+    -#     - @completed_polls.each do |completed_poll|
+    -#       .flex
+    -#         .text-slate-800.font-bold.underline.px-1= link_to "Poll", poll_path(completed_poll.completion_source.id)
+    -#         .text-gray-400.font-bold.px-1.text-sm= completed_survey.created_at.strftime('%b %e at %l:%M %p')
 
 

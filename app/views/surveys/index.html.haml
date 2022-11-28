@@ -4,8 +4,23 @@
 .p-10.grid.grid-cols-1.sm.grid-cols-1.md.grid-cols-4.lg.grid-cols-4.xl.grid-cols-4.gap-5
   - @surveys.each do |survey|
     = render survey
+
+  - if current_user.admin?
+    - @admin_polls.each do |poll| 
+      =link_to poll_path(poll) do 
+        .flex.flex-col.relative.rounded-sm.border-t-4.border-slate-200.p-6.pb-20.shadow-xl
+          .h1.text-lg.text-black.font-bold.text-gray-600 Poll
+          .h5.text-4xl.text-green-800.font-bold= "#{number_to_currency(poll.rewards_cash)}"
+          -# .h1.text-3xl.text-black.font-bold= poll.topic
+          .absolute.left-8.bottom-2.text-md.font-semibold.text-gray-700.mb-6 Click to participate
+  - else 
+    - @polls.each do |poll| 
+      =link_to poll_path(poll) do 
+        .flex.flex-col.relative.rounded-sm.border-t-4.border-slate-200.p-6.pb-20.shadow-xl
+          .h1.text-lg.text-black.font-bold.text-gray-600 Poll
+          .h5.text-4xl.text-green-800.font-bold= "#{number_to_currency(poll.rewards_cash)}"
+          -# .h1.text-3xl.text-black.font-bold= poll.topic
+          .absolute.left-8.bottom-2.text-md.font-semibold.text-gray-700.mb-6 Click to participate
 .text-center
   = link_to "New survey", new_survey_path if current_user.admin
-
-
-
+  = link_to "New Poll", new_poll_path if current_user.admin

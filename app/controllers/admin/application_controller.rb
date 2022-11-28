@@ -4,6 +4,7 @@ class Admin::ApplicationController < ApplicationController
 
   def index
     @users = User.all
+    @polls = Poll.all
     @surveys = Survey.all
     @categories = Category.all
     @completions = Completion.all

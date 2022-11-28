@@ -22,5 +22,5 @@
 							%td.whitespace-nowrap.px-3.py-4.text-sm.text-gray-500= @user.full_name
 							%td.whitespace-nowrap.px-3.py-4.text-sm.text-gray-500= @user.organized_surveys.count
 							%td.whitespace-nowrap.px-3.py-4.text-sm.text-gray-500= @user.enrollments.count
-							%td.whitespace-nowrap.px-3.py-4.text-sm.text-gray-500= @user.completed_surveys.count
+							%td.whitespace-nowrap.px-3.py-4.text-sm.text-gray-500= @user.@completed_surveys.count
 %p{:class => "inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto", :type => "button"}= link_to "Back to Users", admin_users_path
